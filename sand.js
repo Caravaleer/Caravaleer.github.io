@@ -9,27 +9,6 @@ function make2Darray(cols, rows){
     return arr;
 }
 
-function mouseDragged(){
-    let mouseCol = floor(mouseX/w);
-    let mouseRow = floor(mouseY/w);
-
-    let matrix = 3;
-    let extent = floor(matrix/2);
-    for (let i = -extent; i <= extent; i++) {
-        for (let j = -extent; j<=extent; j++){
-            if (random(1)<0.75){
-                let col = mouseCol + i;
-                let row = mouseRow +j;
-                if (withinCols(col) && withinRows(row)){
-                    grid[col][row] = hueValue;
-            }
-        } 
-    }
-
-    
-    }
-    
-}
 function withinCols(i){
     return i>=0 && i<=cols-1;
 }
@@ -60,7 +39,26 @@ function setup(){
 
 function draw(){
     background(0);
-
+    if (mouseIsPressed == true) {
+        if (mouseButton == LEFT) {
+            let mouseCol = floor(mouseX/w);
+            let mouseRow = floor(mouseY/w);
+        
+            let matrix = 3;
+            let extent = floor(matrix/2);
+            for (let i = -extent; i <= extent; i++) {
+                for (let j = -extent; j<=extent; j++){
+                    if (random(1)<0.75){
+                        let col = mouseCol + i;
+                        let row = mouseRow +j;
+                        if (withinCols(col) && withinRows(row)){
+                            grid[col][row] = hueValue;
+                        }
+                    } 
+                }
+            }
+        }
+    }
     for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
             noStroke();
