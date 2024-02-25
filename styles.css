@@ -1,0 +1,32 @@
+button {
+
+    font-family: "Kode Mono", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+    margin: 3rem;
+    border-radius: 0.5em;
+    background-color: #FBFADA;
+    color: #12372A;
+    border: 1px solid #12372A;
+    padding: 0.5em 1em;
+}
+
+div {
+    border-radius: 1em;
+    background-color: #E1F0DA;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 5px solid #12372A;
+    align-items: center;
+    margin: 1em;
+    
+}
+
+button:hover { 
+    transition-duration: 0.3s;
+    box-shadow: 0em 0em 3px 2px #FFF8E3;
+    transform: scale(1.2);
+    background-color: #ADBC9F;
+    color: #FBFADA;
+}
