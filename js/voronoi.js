@@ -3,7 +3,7 @@ let delan, voronoi;
 let cat;
 
 function preload(){
-    cat = loadImage("images/cat.jpg");
+    cat = loadImage("./images/cat.jpg");
 }
 
 function setup() {
