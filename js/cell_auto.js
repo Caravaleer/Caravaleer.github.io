@@ -13,9 +13,9 @@ function setup(){
     
     setVal;
     input = createInput();
-    input.position(20, 30);
+    input.position(220, 30);
     button = createButton("submit");
-    button.position(160, 30);
+    button.position(360, 30);
     button.mousePressed(setVal);
 }
 
