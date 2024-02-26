@@ -30,7 +30,7 @@ function draw() {
     background(255);
     for (let v of points){
         stroke(0);
-        strokeWeight(4);
+        strokeWeight(3);
         point(v.x, v.y)
     }
     // noFill();
