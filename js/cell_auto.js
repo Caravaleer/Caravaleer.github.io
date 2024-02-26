@@ -3,20 +3,41 @@ let rule;
 let cells = [];
 let w = 5;
 let y=0;
+let p = 0;
+
+
+
 
 function setup(){
     createCanvas(600, 1800);
-    rule = ruleSet.toString(2).padStart(8, "0");
-    let total = width/w;
-    for (let i = 0; i < total; i++) {
-        cells[i] = 0;  
-    }
-    cells[floor(total/2)] = 1;
-    background(255);
+    
+    setVal;
+    input = createInput();
+    input.position(20, 30);
+    button = createButton("submit");
+    button.position(160, 30);
+    button.mousePressed(setVal);
 }
 
+function setVal(){
+    ruleSet = int(input.value());
+    if (ruleSet>=0 && ruleSet<256){
+        p=0;
+        y=45;
+        background(255);
+        rule = ruleSet.toString(2).padStart(8, "0");
+        let total = width/w;
+        for (let i = 0; i < total; i++) {
+            cells[i] = 0;  
+        }
+        cells[floor(total/2)] = 1;
+    }
+}
+
+
 function draw(){
-    for (let i = 0; i < cells.length; i++) {
+    if (p<100)
+    {for (let i = 0; i < cells.length; i++) {
         let x = i*w;
         noStroke();
         fill(255-cells[i]*255);
@@ -32,7 +53,8 @@ function draw(){
         let newState = calcGen(left, state, right);
         nextCells[i] = newState;
     }
-    cells = nextCells;
+    cells = nextCells;}
+    p+=1;
 }
 
 function calcGen(a, b, c){
@@ -40,3 +62,4 @@ function calcGen(a, b, c){
     let value = 7 - parseInt(neighbourhood, 2);
     return parseInt(rule[value]);
 }
+
