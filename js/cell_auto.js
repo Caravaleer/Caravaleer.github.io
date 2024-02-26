@@ -12,6 +12,13 @@ function setup(){
     createCanvas(600, 1800);
     
     setVal;
+    fill(0);
+    stroke(0);
+    strokeWeight(0.4);
+    textFont('Courier');
+    textSize(24);
+    textAlign(CENTER);
+    text('Enter a number between 0 and 255', 300, 15);
     input = createInput();
     input.position(220, 30);
     button = createButton("submit");
