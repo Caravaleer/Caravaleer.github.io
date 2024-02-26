@@ -3,16 +3,16 @@ let delan, voronoi;
 let cat;
 
 function preload(){
-    cat = loadImage("./images/cat.jpg");
+    cat = loadImage("./images/eye.jpg");
 }
 
 function setup() {
-    createCanvas(612, 612);
+    createCanvas(612, 611);
     for (let i = 0; i<10000; i++){
         let x = random(width);
         let y = random(height);
         let col = cat.get(x, y);
-        if (random(100) > brightness(col)){
+        if (random(10) > brightness(col)){
             points.push(createVector(x, y));
         }
         else {
