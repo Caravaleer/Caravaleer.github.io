@@ -65,7 +65,7 @@ body{
     left: 0;
     width: 100%;
     height: 100%;
-    background: #333;
+    background:  linear-gradient(45deg, #7700ff,#4b88c4);
     backface-visibility: hidden;
     transform-style: preserve-3d;
     transform: rotateY(180deg);
