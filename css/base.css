@@ -20,7 +20,12 @@ body {
   color: var(--clr-fg);
   background: var(--clr-bg);
   overflow-x: hidden;
-  cursor: none; /* custom cursor takes over */
+  cursor: auto;
+}
+
+/* Custom cursor only takes over when active and initialized */
+.js-enabled.cursor-active body {
+  cursor: none;
 }
 
 /* Touch / reduced-motion: show default cursor */
@@ -178,13 +183,18 @@ input, textarea { font: inherit; }
 }
 
 /* ── Reveal animations (JS adds .revealed) ───────────────── */
+/* Content is visible by default for graceful fallback; hide-and-reveal only when JS is active */
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+.js-enabled .reveal {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity var(--dur-slow) var(--ease-out),
               transform var(--dur-slow) var(--ease-out);
 }
-.reveal.revealed { opacity: 1; transform: none; }
+.js-enabled .reveal.revealed { opacity: 1; transform: none; }
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
