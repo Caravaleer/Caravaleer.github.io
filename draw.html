@@ -1,25 +1,82 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ML Draw — Abhimanyu Dutta Lab</title>
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-  <link rel="stylesheet" href="css/lab.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Drawing — Lab</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+  <link rel="stylesheet" href="css/lab.css"/>
   <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.js"></script>
-    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
-    <script src="js/draw/rdp.js"></script>
-    <script src="js/draw/draw.js"></script>
+  <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
+  <style>
+    /* Loading overlay for model initialisation */
+    #model-loading-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--clr-bg, #0d0d0d);
+      color: var(--clr-fg, #f0f0f0);
+      z-index: 50;
+      font-family: inherit;
+      gap: 1rem;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    #model-loading-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .loading-spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid var(--clr-border, #333);
+      border-top-color: var(--clr-accent-1, #c4b0f5);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .loading-spinner { animation: none; border-top-color: var(--clr-accent-1, #c4b0f5); }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #model-loading-overlay p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--clr-fg-muted, #888);
+    }
+    #model-loading-overlay .load-label {
+      font-size: 1.1rem;
+      color: var(--clr-fg, #f0f0f0);
+      font-weight: 500;
+    }
+  </style>
 </head>
 <body>
   <header class="lab-topbar" aria-label="Lab navigation">
     <div class="lab-topbar-left">
-      <a href="index.html#lab" class="lab-back" aria-label="Back to portfolio">← Back</a>
+      <a href="index.html#lab" class="lab-back" aria-label="Back to portfolio">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+        Back
+      </a>
     </div>
     <div class="lab-topbar-right">
-      <span class="lab-title">ML Draw</span>
+      <span class="lab-title">AI Drawing</span>
     </div>
   </header>
-  <main id="sketch-container" aria-label="ML Draw interactive simulation"></main>
+  <!-- Loading overlay — shown while ml5 model loads -->
+  <div id="model-loading-overlay" aria-live="polite" aria-label="Model loading status">
+    <div class="loading-spinner" aria-hidden="true"></div>
+    <span class="load-label">Loading model…</span>
+    <p id="load-subtext">Fetching SketchRNN weights</p>
+  </div>
+  <main id="sketch-container" style="position:relative;width:100%;height:calc(100vh - 48px);overflow:hidden"></main>
+  <script>
+    (function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.dataset.theme=t;})();
+  </script>
+  <script src="js/lab/lab-utils.js"></script>
+  <script src="js/draw/rdp.js"></script>
+  <script src="js/draw/draw.js"></script>
 </body>
 </html>

@@ -1,24 +1,29 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Space Travel — Abhimanyu Dutta Lab</title>
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-  <link rel="stylesheet" href="css/lab.css" />
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-    <script src="js/space.js"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Space Travel — Lab</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+  <link rel="stylesheet" href="css/lab.css"/>
 </head>
 <body>
   <header class="lab-topbar" aria-label="Lab navigation">
     <div class="lab-topbar-left">
-      <a href="index.html#lab" class="lab-back" aria-label="Back to portfolio">← Back</a>
+      <a href="index.html#lab" class="lab-back" aria-label="Back to portfolio">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+        Back
+      </a>
     </div>
     <div class="lab-topbar-right">
       <span class="lab-title">Space Travel</span>
     </div>
   </header>
-  <main id="sketch-container" aria-label="Space Travel interactive simulation"></main>
+  <main id="sketch-container" style="position:relative;width:100%;height:calc(100vh - 48px);overflow:hidden"></main>
+  <script>
+    (function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.dataset.theme=t;})();
+  </script>
+  <script src="js/lab/lab-utils.js"></script>
+  <script src="js/space.js"></script>
 </body>
 </html>
