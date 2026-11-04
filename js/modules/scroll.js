@@ -50,7 +50,6 @@ export function initCountUp() {
       const dur     = 1800;
       const start   = performance.now();
 
-      // Find or create a text node to update (preserve child suffix spans)
       let textNode = null;
       for (const node of el.childNodes) {
         if (node.nodeType === Node.TEXT_NODE) { textNode = node; break; }

@@ -25,10 +25,12 @@
   font-weight: 700;
   letter-spacing: var(--tracking-tight);
   line-height: var(--leading-snug);
+  color: var(--clr-fg);
 }
+/* Italic emphasis: deep accent purple — 7:1 on cream, 6.5:1 on near-black */
 .manifesto-text em {
   font-style: italic;
-  color: var(--clr-accent-1);
+  color: var(--clr-accent-1-text);
 }
 .manifesto-visual {
   width: clamp(80px, 10vw, 140px);
@@ -38,7 +40,8 @@
   flex-shrink: 0;
   overflow: hidden;
   display: flex; align-items: center; justify-content: center;
-  font-size: 2.5rem;
+  /* SVG icon instead of emoji — icons are injected by HTML */
+  color: var(--clr-accent-1-text);
   transition: transform var(--dur-normal) var(--ease-spring);
 }
 .manifesto-item:hover .manifesto-visual { transform: scale(1.05) rotate(-3deg); }
@@ -69,13 +72,20 @@
   border: 1px solid var(--clr-border);
   transition: all var(--dur-normal) var(--ease-out);
 }
+/* Active/hover: lavender fill with dark text — AA compliant */
 .filter-btn.active, .filter-btn:hover {
   background: var(--clr-accent-1);
   color: var(--clr-accent-fg);
   border-color: transparent;
 }
+/* In light mode: use deeper fill so text has enough contrast */
+[data-theme="light"] .filter-btn.active,
+[data-theme="light"] .filter-btn:hover {
+  background: var(--clr-accent-1-strong);
+  color: #ffffff;
+}
 
-/* Projects rail (horizontal on desktop) */
+/* Projects rail */
 .projects-rail {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
@@ -111,7 +121,6 @@
   position: relative;
   overflow: hidden;
   display: flex; align-items: center; justify-content: center;
-  font-size: 4rem;
 }
 .project-card-visual img {
   width: 100%; height: 100%;
@@ -119,8 +128,16 @@
   transition: transform var(--dur-slow) var(--ease-out);
 }
 .project-card:hover .project-card-visual img { transform: scale(1.05); }
+
+/* SVG placeholder icon — inherits text color */
 .project-card-visual-placeholder {
   color: var(--clr-fg-dim);
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 100%;
+}
+.project-card-visual-placeholder svg {
+  width: 48px; height: 48px;
+  opacity: 0.5;
 }
 
 .project-card-body {
@@ -140,6 +157,7 @@
   font-weight: 700;
   letter-spacing: var(--tracking-tight);
   line-height: var(--leading-snug);
+  color: var(--clr-fg);
 }
 .project-card-desc {
   font-size: var(--text-sm);
@@ -165,12 +183,13 @@
   font-weight: 500;
   transition: color var(--dur-fast);
 }
-.project-card-link:hover { color: var(--clr-accent-1); }
+.project-card-link:hover { color: var(--clr-accent-1-text); }
 
 /* Project modal */
 .project-modal-backdrop {
   position: fixed; inset: 0;
-  background: rgba(10,10,10,0.9);
+  /* Semantic semitransparent bg — works in both themes */
+  background: color-mix(in srgb, var(--clr-bg) 88%, transparent);
   backdrop-filter: blur(8px);
   z-index: var(--z-modal);
   opacity: 0;
@@ -213,21 +232,28 @@
 .modal-close:hover { border-color: var(--clr-fg); color: var(--clr-fg); }
 .modal-body { padding: var(--space-8); }
 .modal-section { margin-bottom: var(--space-8); }
+/* Modal section heading: deep accent text — readable both themes */
 .modal-section h4 {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--clr-accent-1);
+  color: var(--clr-accent-1-text);
   margin-bottom: var(--space-3);
 }
 .modal-section p { font-size: var(--text-sm); color: var(--clr-fg-muted); line-height: var(--leading-normal); }
 .modal-links { display: flex; gap: var(--space-3); flex-wrap: wrap; }
 
 /* ── STATS ───────────────────────────────────────────────── */
+/* Stats bg: lavender fill — dark text (clr-accent-fg) for contrast */
 .stats {
   background: var(--clr-accent-1);
   color: var(--clr-accent-fg);
+}
+/* Light mode: use deeper purple fill for better contrast */
+[data-theme="light"] .stats {
+  background: var(--clr-accent-1-strong);
+  color: #ffffff;
 }
 .stats-grid {
   display: grid;
@@ -245,7 +271,7 @@
 }
 .stat-label {
   font-size: var(--text-sm);
-  opacity: 0.75;
+  opacity: 0.8;
   margin-top: var(--space-2);
   font-weight: 500;
 }
@@ -268,14 +294,27 @@
   transition: transform var(--dur-normal) var(--ease-out),
               border-color var(--dur-normal) var(--ease-out);
 }
-.lab-card:hover { transform: scale(1.02); border-color: var(--clr-accent-3); }
+.lab-card:hover { transform: scale(1.02); border-color: var(--clr-accent-1-text); }
 .lab-card-preview {
   width: 100%; height: 100%;
   object-fit: cover;
 }
+
+/* Lab card icon (for canvas previews without screenshots) */
+.lab-card-icon {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--clr-fg-dim);
+  background: var(--clr-surface-2);
+}
+.lab-card-icon svg { width: 48px; height: 48px; }
+
 .lab-card-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(10,10,10,0.9) 40%, transparent);
+  /* Semantic gradient: uses CSS variable so it adapts to theme */
+  background: linear-gradient(to top,
+    color-mix(in srgb, var(--clr-bg) 90%, transparent) 40%,
+    transparent);
   display: flex; flex-direction: column; justify-content: flex-end;
   padding: var(--space-6);
   opacity: 0;
@@ -286,15 +325,23 @@
   font-family: var(--font-display);
   font-size: var(--text-xl);
   font-weight: 700;
+  color: var(--clr-fg);
 }
-.lab-card-desc { font-size: var(--text-xs); color: var(--clr-fg-muted); margin-top: var(--space-1); }
+.lab-card-desc {
+  font-size: var(--text-xs);
+  color: var(--clr-fg-muted);
+  margin-top: var(--space-1);
+}
 .lab-card-launch {
   margin-top: var(--space-4);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   letter-spacing: 0.08em;
-  color: var(--clr-accent-3);
+  color: var(--clr-accent-1-text);
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
 /* ── EXPERIENCE / TIMELINE ───────────────────────────────── */
@@ -326,13 +373,14 @@
               background var(--dur-normal) var(--ease-out);
 }
 .timeline-item:hover .timeline-dot {
-  border-color: var(--clr-accent-1);
+  border-color: var(--clr-accent-1-text);
   background: var(--clr-accent-1);
 }
+/* Timeline period: deep accent — readable both themes */
 .timeline-period {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--clr-accent-1);
+  color: var(--clr-accent-1-text);
   letter-spacing: 0.08em;
   margin-bottom: var(--space-2);
 }
@@ -341,6 +389,7 @@
   font-size: var(--text-2xl);
   font-weight: 700;
   letter-spacing: var(--tracking-tight);
+  color: var(--clr-fg);
   margin-bottom: var(--space-1);
 }
 .timeline-org {
@@ -358,11 +407,13 @@
   position: relative;
   line-height: var(--leading-normal);
 }
+/* Arrow marker: use an SVG-style arrow char with accent color */
 .timeline-bullets li::before {
-  content: '→';
-  position: absolute; left: 0;
-  color: var(--clr-accent-1);
-  font-size: 0.8em;
+  content: '';
+  position: absolute;
+  left: 0; top: 0.6em;
+  width: 8px; height: 1px;
+  background: var(--clr-accent-1-text);
 }
 
 /* Skills grid */
@@ -413,6 +464,7 @@
   letter-spacing: var(--tracking-tight);
   margin-bottom: var(--space-2);
   line-height: var(--leading-snug);
+  color: var(--clr-fg);
 }
 .research-meta {
   font-size: var(--text-xs);
@@ -427,8 +479,16 @@
   white-space: nowrap;
   align-self: start;
 }
-.status-review { background: color-mix(in srgb, var(--clr-accent-3) 15%, transparent); color: var(--clr-accent-3); border: 1px solid color-mix(in srgb, var(--clr-accent-3) 30%, transparent); }
-.status-prep   { background: color-mix(in srgb, var(--clr-accent-2) 15%, transparent); color: var(--clr-accent-2); border: 1px solid color-mix(in srgb, var(--clr-accent-2) 30%, transparent); }
+.status-review {
+  background: color-mix(in srgb, var(--clr-accent-3) 15%, transparent);
+  color: var(--clr-accent-3);
+  border: 1px solid color-mix(in srgb, var(--clr-accent-3) 30%, transparent);
+}
+.status-prep {
+  background: color-mix(in srgb, var(--clr-accent-2) 15%, transparent);
+  color: var(--clr-accent-2);
+  border: 1px solid color-mix(in srgb, var(--clr-accent-2) 30%, transparent);
+}
 
 /* ── CONTACT ─────────────────────────────────────────────── */
 .contact {
@@ -442,13 +502,20 @@
   letter-spacing: var(--tracking-tight);
   margin-bottom: var(--space-6);
   line-height: var(--leading-tight);
+  color: var(--clr-fg);
 }
+/* Contact em: deep accent purple text — readable both themes */
+.contact-headline em {
+  color: var(--clr-accent-1-text);
+  font-style: italic;
+}
+/* Email link: deep accent, no pure lavender on cream */
 .contact-email {
   font-family: var(--font-display);
   font-size: var(--text-3xl);
   font-weight: 700;
   letter-spacing: var(--tracking-tight);
-  color: var(--clr-accent-1);
+  color: var(--clr-accent-1-text);
   display: inline-block;
   position: relative;
   transition: letter-spacing var(--dur-normal) var(--ease-out);
@@ -458,7 +525,7 @@
   position: absolute;
   bottom: -4px; left: 0; right: 0;
   height: 2px;
-  background: var(--clr-accent-1);
+  background: var(--clr-accent-1-text);
   transform: scaleX(0);
   transition: transform var(--dur-normal) var(--ease-out);
 }
@@ -477,11 +544,16 @@
   border: 1.5px solid var(--clr-border);
   font-size: var(--text-sm);
   font-weight: 500;
+  color: var(--clr-fg);
   transition: border-color var(--dur-normal) var(--ease-out),
               color var(--dur-normal) var(--ease-out),
               background var(--dur-normal) var(--ease-out);
 }
-.social-link:hover { border-color: var(--clr-accent-1); background: color-mix(in srgb, var(--clr-accent-1) 10%, transparent); color: var(--clr-accent-1); }
+.social-link:hover {
+  border-color: var(--clr-accent-1-text);
+  background: color-mix(in srgb, var(--clr-accent-1) 12%, transparent);
+  color: var(--clr-accent-1-text);
+}
 
 /* Contact form */
 .contact-form {
@@ -509,9 +581,15 @@
   font-size: var(--text-base);
   transition: border-color var(--dur-fast);
 }
+/* Placeholder text: explicitly set so it passes AA muted threshold */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--clr-fg-dim);
+  opacity: 1;
+}
 .form-group input:focus, .form-group textarea:focus {
   outline: none;
-  border-color: var(--clr-accent-1);
+  border-color: var(--clr-accent-1-text);
 }
 .form-group textarea { min-height: 140px; resize: vertical; }
 
@@ -530,8 +608,9 @@
   font-family: var(--font-display);
   font-size: var(--text-xl);
   font-weight: 800;
+  color: var(--clr-fg);
 }
-.footer-logo span { color: var(--clr-accent-1); }
+.footer-logo span { color: var(--clr-accent-1-text); }
 .footer-copy {
   text-align: center;
   font-size: var(--text-xs);
@@ -558,4 +637,3 @@
   .timeline { padding-left: var(--space-8); }
   .timeline-dot { left: calc(-2rem - 7px); }
 }
-

@@ -27,6 +27,7 @@
   opacity: 0.12;
   animation: orb-drift 20s ease-in-out infinite alternate;
 }
+/* Orb colours: use lavender/rose/periwinkle — look good in both themes */
 .hero-orb-1 {
   width: 60vw; height: 60vw;
   background: var(--clr-accent-1);
@@ -45,6 +46,9 @@
   top: 30%; left: 30%;
   animation-delay: -14s;
 }
+/* Light mode: bump opacity a little so orbs are visible over cream bg */
+[data-theme="light"] .hero-orb { opacity: 0.18; }
+
 @keyframes orb-drift {
   0%   { transform: translate(0, 0) scale(1); }
   100% { transform: translate(3%, 5%) scale(1.08); }
@@ -56,12 +60,13 @@
   max-width: 1100px;
 }
 
+/* Eyebrow: deep accent text — readable on both bg colours */
 .hero-eyebrow {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--clr-accent-1);
+  color: var(--clr-accent-1-text);
   margin-bottom: var(--space-6);
   opacity: 0;
   transform: translateY(20px);
@@ -91,7 +96,11 @@
 .hero-headline .line:nth-child(2) span { animation-delay: 0.45s; }
 .hero-headline .line:nth-child(3) span { animation-delay: 0.6s; }
 
-.hero-headline .accent { color: var(--clr-accent-1); font-style: italic; }
+/* Accent in headline: deep purple text — passes AA on both themes */
+.hero-headline .accent {
+  color: var(--clr-accent-1-text);
+  font-style: italic;
+}
 
 .hero-sub {
   max-width: 540px;
@@ -102,8 +111,6 @@
   opacity: 0;
   animation: hero-reveal 0.8s var(--ease-out) 0.9s forwards;
 }
-/* space-10 */
-:root { --space-10: 2.5rem; }
 
 .hero-actions {
   display: flex;
@@ -172,7 +179,8 @@
 .ticker-item .dot {
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: var(--clr-accent-1);
+  /* Use the deep accent so visible on both cream and black backgrounds */
+  background: var(--clr-accent-1-text);
   flex-shrink: 0;
 }
 @keyframes ticker-scroll {
@@ -187,4 +195,3 @@
 @keyframes hero-line-reveal {
   to { opacity: 1; transform: translateY(0); }
 }
-

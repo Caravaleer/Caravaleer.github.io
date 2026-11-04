@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abhimanyu Dutta — Full-Stack Engineer & AI Researcher</title>
+  <title>Abhimanyu Dutta &mdash; Full-Stack Engineer &amp; AI Researcher</title>
   <meta name="description" content="Abhimanyu Dutta is a full-stack engineering student and AI researcher at DSCE Bengaluru, building intelligent systems and exploring the limits of computation." />
   <!-- Open Graph -->
-  <meta property="og:title"       content="Abhimanyu Dutta — Full-Stack Engineer & AI Researcher" />
+  <meta property="og:title"       content="Abhimanyu Dutta &mdash; Full-Stack Engineer &amp; AI Researcher" />
   <meta property="og:description" content="Building intelligent systems, real-time pipelines, and ML research." />
   <meta property="og:type"        content="website" />
   <meta property="og:url"         content="https://caravaleer.github.io/" />
   <meta property="og:image"       content="https://caravaleer.github.io/assets/og.png" />
   <meta name="twitter:card"       content="summary_large_image" />
   <meta name="twitter:title"      content="Abhimanyu Dutta" />
-  <meta name="twitter:description" content="Full-Stack Engineer & AI Researcher" />
+  <meta name="twitter:description" content="Full-Stack Engineer &amp; AI Researcher" />
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-  <!-- Fonts (preconnect for speed) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -27,6 +27,106 @@
   <link rel="stylesheet" href="css/hero.css" />
   <link rel="stylesheet" href="css/sections.css" />
   <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- Inline SVG sprite — all icons referenced via <use> -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <!-- arrow-right -->
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+    </symbol>
+    <!-- external-link -->
+    <symbol id="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+    </symbol>
+    <!-- download -->
+    <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+    </symbol>
+    <!-- mail -->
+    <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+    </symbol>
+    <!-- github -->
+    <symbol id="icon-github" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+    </symbol>
+    <!-- linkedin -->
+    <symbol id="icon-linkedin" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+    </symbol>
+    <!-- code / terminal -->
+    <symbol id="icon-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+    </symbol>
+    <!-- brain / AI -->
+    <symbol id="icon-brain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.49-4.11 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24A2.5 2.5 0 0 1 9.5 2z"/>
+      <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.49-4.11 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24A2.5 2.5 0 0 0 14.5 2z"/>
+    </symbol>
+    <!-- database / pipelines -->
+    <symbol id="icon-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+    </symbol>
+    <!-- workflow / AI -->
+    <symbol id="icon-workflow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="9" y="15" width="6" height="6" rx="1"/>
+      <path d="M6 9v3a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V9"/>
+    </symbol>
+    <!-- telescope / vision -->
+    <symbol id="icon-telescope" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"/><path d="M3 12l4-4 10 2 4-4"/><line x1="12" y1="15" x2="12" y2="21"/><line x1="9" y1="21" x2="15" y2="21"/>
+    </symbol>
+    <!-- file-text / docs -->
+    <symbol id="icon-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+    </symbol>
+    <!-- trophy / award -->
+    <symbol id="icon-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 9H4a2 2 0 0 1-2-2V5h4"/><path d="M18 9h2a2 2 0 0 0 2-2V5h-4"/><path d="M4 5h16v7a8 8 0 0 1-16 0z"/><line x1="12" y1="20" x2="12" y2="16"/><rect x="8" y="20" width="8" height="2" rx="1"/>
+    </symbol>
+    <!-- shield / security -->
+    <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </symbol>
+    <!-- rocket -->
+    <symbol id="icon-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+      <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+      <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+    </symbol>
+    <!-- chart / finance -->
+    <symbol id="icon-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+    </symbol>
+    <!-- scatter / data -->
+    <symbol id="icon-scatter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="7" cy="7" r="2"/><circle cx="17" cy="7" r="2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><circle cx="12" cy="12" r="2"/>
+    </symbol>
+    <!-- moon (theme toggle) -->
+    <symbol id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </symbol>
+    <!-- sun (theme toggle) -->
+    <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </symbol>
+    <!-- close -->
+    <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </symbol>
+    <!-- play -->
+    <symbol id="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="5 3 19 12 5 21 5 3"/>
+    </symbol>
+    <!-- eye -->
+    <symbol id="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+    </symbol>
+  </svg>
 </head>
 <body>
 
@@ -43,12 +143,12 @@
   <div id="cursor" aria-hidden="true"><span id="cursor-label"></span></div>
   <div id="cursor-dot" aria-hidden="true"></div>
 
-  <!-- ═══════════════════════════════════════════════════════
+  <!-- ======================================================
        NAVIGATION
-  ═══════════════════════════════════════════════════════ -->
+  ====================================================== -->
   <nav class="site-nav" role="navigation" aria-label="Main navigation">
     <div class="container nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Abhimanyu Dutta — home">
+      <a href="index.html" class="nav-logo" aria-label="Abhimanyu Dutta &mdash; home">
         A<span>.</span>Dutta
       </a>
 
@@ -62,11 +162,12 @@
 
       <div class="nav-actions">
         <button class="theme-toggle" aria-label="Toggle light/dark theme">
-          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          <svg class="icon-sun"  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="16" height="16" aria-hidden="true"><use href="#icon-moon"/></svg>
+          <svg class="icon-sun"  width="16" height="16" aria-hidden="true"><use href="#icon-sun"/></svg>
         </button>
         <a href="My_CV.pdf" class="btn btn-primary magnetic" download aria-label="Download resume PDF">
-          Resume ↓
+          Resume
+          <svg width="14" height="14" aria-hidden="true"><use href="#icon-download"/></svg>
         </a>
         <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-overlay">
           <span></span><span></span><span></span>
@@ -91,12 +192,12 @@
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════════
+  <!-- ======================================================
        MAIN CONTENT
-  ═══════════════════════════════════════════════════════ -->
+  ====================================================== -->
   <main id="main">
 
-    <!-- ── HERO ──────────────────────────────────────────── -->
+    <!-- HERO -->
     <section class="hero section" aria-label="Introduction">
       <div class="hero-bg" aria-hidden="true">
         <div class="hero-orb hero-orb-1"></div>
@@ -105,7 +206,7 @@
       </div>
 
       <div class="container hero-content">
-        <p class="hero-eyebrow">Abhimanyu Dutta — Bengaluru, India</p>
+        <p class="hero-eyebrow">Abhimanyu Dutta &mdash; Bengaluru, India</p>
         <h1 class="hero-headline text-display">
           <span class="line"><span>Full-Stack</span></span>
           <span class="line"><span>Engineer &amp;</span></span>
@@ -116,7 +217,10 @@
           Currently at <strong>Atlas Systems</strong> and studying at <strong>DSCE, Bengaluru</strong>.
         </p>
         <div class="hero-actions">
-          <a href="#work" class="btn btn-primary magnetic">See My Work →</a>
+          <a href="#work" class="btn btn-primary magnetic">
+            See My Work
+            <svg width="14" height="14" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
+          </a>
           <a href="#contact" class="btn btn-outline magnetic">Get in Touch</a>
         </div>
       </div>
@@ -144,7 +248,7 @@
       </div>
     </section>
 
-    <!-- ── MANIFESTO ──────────────────────────────────────── -->
+    <!-- MANIFESTO -->
     <section class="manifesto section" aria-label="What I do">
       <div class="container">
         <p class="section-label">What I do</p>
@@ -152,44 +256,58 @@
 
           <div class="manifesto-item reveal">
             <p class="manifesto-text">I build <em>full-stack systems</em> that move fast and stay clean.</p>
-            <div class="manifesto-visual" aria-hidden="true">⚡</div>
+            <div class="manifesto-visual" aria-hidden="true">
+              <svg width="40" height="40"><use href="#icon-code"/></svg>
+            </div>
           </div>
 
           <div class="manifesto-item reveal reveal-delay-1">
-            <p class="manifesto-text">I research <em>adversarial ML</em> — how models break, and how to defend them.</p>
-            <div class="manifesto-visual" aria-hidden="true">🧠</div>
+            <p class="manifesto-text">I research <em>adversarial ML</em> &mdash; how models break, and how to defend them.</p>
+            <div class="manifesto-visual" aria-hidden="true">
+              <svg width="40" height="40"><use href="#icon-shield"/></svg>
+            </div>
           </div>
 
           <div class="manifesto-item reveal reveal-delay-2">
             <p class="manifesto-text">I engineer <em>real-time data pipelines</em> that sync thousands of records reliably.</p>
-            <div class="manifesto-visual" aria-hidden="true">🔀</div>
+            <div class="manifesto-visual" aria-hidden="true">
+              <svg width="40" height="40"><use href="#icon-database"/></svg>
+            </div>
           </div>
 
           <div class="manifesto-item reveal reveal-delay-3">
             <p class="manifesto-text">I design <em>AI-driven workflows</em> that cut manual effort and accelerate teams.</p>
-            <div class="manifesto-visual" aria-hidden="true">🤖</div>
+            <div class="manifesto-visual" aria-hidden="true">
+              <svg width="40" height="40"><use href="#icon-workflow"/></svg>
+            </div>
           </div>
 
           <div class="manifesto-item reveal reveal-delay-4">
-            <p class="manifesto-text">I explore <em>computer vision</em> — from Martian terrain to canvas simulations.</p>
-            <div class="manifesto-visual" aria-hidden="true">👁</div>
+            <p class="manifesto-text">I explore <em>computer vision</em> &mdash; from Martian terrain to canvas simulations.</p>
+            <div class="manifesto-visual" aria-hidden="true">
+              <svg width="40" height="40"><use href="#icon-telescope"/></svg>
+            </div>
           </div>
 
           <div class="manifesto-item reveal">
             <p class="manifesto-text">I write <em>clear, documented code</em> that future me will actually thank.</p>
-            <div class="manifesto-visual" aria-hidden="true">✍</div>
+            <div class="manifesto-visual" aria-hidden="true">
+              <svg width="40" height="40"><use href="#icon-file-text"/></svg>
+            </div>
           </div>
 
           <div class="manifesto-item reveal reveal-delay-1">
-            <p class="manifesto-text">I compete, solve, and <em>ship</em> — from hackathons to production deployments.</p>
-            <div class="manifesto-visual" aria-hidden="true">🚀</div>
+            <p class="manifesto-text">I compete, solve, and <em>ship</em> &mdash; from hackathons to production deployments.</p>
+            <div class="manifesto-visual" aria-hidden="true">
+              <svg width="40" height="40"><use href="#icon-rocket"/></svg>
+            </div>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- ── STATS ──────────────────────────────────────────── -->
+    <!-- STATS -->
     <section class="stats section" aria-label="By the numbers">
       <div class="container">
         <div class="stats-grid">
@@ -221,7 +339,7 @@
       </div>
     </section>
 
-    <!-- ── SELECTED WORK ──────────────────────────────────── -->
+    <!-- SELECTED WORK -->
     <section id="work" class="section" aria-label="Selected projects">
       <div class="container">
         <div class="work-header">
@@ -251,12 +369,14 @@
             data-stack="Python, LLM APIs, React, FastAPI, Agentic Workflows"
             data-github="https://github.com/Caravaleer">
             <div class="project-card-visual">
-              <div class="project-card-visual-placeholder" aria-label="AETOS project illustration">🛰</div>
+              <div class="project-card-visual-placeholder" aria-label="AETOS project illustration">
+                <svg width="48" height="48"><use href="#icon-brain"/></svg>
+              </div>
             </div>
             <div class="project-card-body">
               <span class="project-card-index font-mono">01</span>
               <h3 class="project-card-title">AETOS</h3>
-              <p class="project-card-desc">AI-Powered Technology Intelligence Platform — automated data enrichment and intelligent reporting, cutting report turnaround by 70%.</p>
+              <p class="project-card-desc">AI-Powered Technology Intelligence Platform &mdash; automated data enrichment and intelligent reporting, cutting report turnaround by 70%.</p>
               <div class="project-card-tags">
                 <span class="tag accent">AI</span>
                 <span class="tag">LLMs</span>
@@ -266,7 +386,10 @@
             </div>
             <div class="project-card-footer">
               <span>Intelligence Platform</span>
-              <span class="project-card-link">Open →</span>
+              <span class="project-card-link">
+                Open
+                <svg width="12" height="12" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
+              </span>
             </div>
           </article>
 
@@ -281,7 +404,9 @@
             data-stack="Next.js, TypeScript, MongoDB, NextAuth.js, Machine Learning"
             data-github="https://github.com/Caravaleer">
             <div class="project-card-visual">
-              <div class="project-card-visual-placeholder" aria-label="Metric project illustration">📊</div>
+              <div class="project-card-visual-placeholder" aria-label="Metric project illustration">
+                <svg width="48" height="48"><use href="#icon-chart"/></svg>
+              </div>
             </div>
             <div class="project-card-body">
               <span class="project-card-index font-mono">02</span>
@@ -295,8 +420,11 @@
               </div>
             </div>
             <div class="project-card-footer">
-              <span>Fintech · Full-Stack</span>
-              <span class="project-card-link">Open →</span>
+              <span>Fintech &middot; Full-Stack</span>
+              <span class="project-card-link">
+                Open
+                <svg width="12" height="12" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
+              </span>
             </div>
           </article>
 
@@ -311,12 +439,14 @@
             data-stack="FastAPI, PostgreSQL, Supabase, React.js, Vercel"
             data-live="https://vercel.com">
             <div class="project-card-visual">
-              <div class="project-card-visual-placeholder" aria-label="Axiom project illustration">💹</div>
+              <div class="project-card-visual-placeholder" aria-label="Axiom project illustration">
+                <svg width="48" height="48"><use href="#icon-scatter"/></svg>
+              </div>
             </div>
             <div class="project-card-body">
               <span class="project-card-index font-mono">03</span>
               <h3 class="project-card-title">Axiom</h3>
-              <p class="project-card-desc">Finance Analysis App — full-stack tool with FastAPI, PostgreSQL, and an interactive React frontend. Deployed on Vercel with 99.9% uptime.</p>
+              <p class="project-card-desc">Finance Analysis App &mdash; full-stack tool with FastAPI, PostgreSQL, and an interactive React frontend. Deployed on Vercel with 99.9% uptime.</p>
               <div class="project-card-tags">
                 <span class="tag">FastAPI</span>
                 <span class="tag">React</span>
@@ -325,8 +455,11 @@
               </div>
             </div>
             <div class="project-card-footer">
-              <span>Fintech · Full-Stack</span>
-              <span class="project-card-link">Open →</span>
+              <span>Fintech &middot; Full-Stack</span>
+              <span class="project-card-link">
+                Open
+                <svg width="12" height="12" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
+              </span>
             </div>
           </article>
 
@@ -336,12 +469,14 @@
             aria-label="View MarsMTFormer-Lite project details"
             data-tags="ai cv"
             data-cursor="View"
-            data-problem="Autonomous Martian rovers require efficient, unified terrain understanding — detecting and segmenting terrain classes in a single inference pass."
+            data-problem="Autonomous Martian rovers require efficient, unified terrain understanding &mdash; detecting and segmenting terrain classes in a single inference pass."
             data-approach="Extending MarsMTFormer, a multi-task transformer baseline, with an efficient architecture for simultaneous semantic detection and instance segmentation on the AI4Mars MSL dataset across 4 terrain classes: Soil, Bedrock, Sand, Big Rock."
             data-stack="Python, PyTorch, Transformer Models, Computer Vision, AI4Mars Dataset"
             data-status="In preparation">
             <div class="project-card-visual">
-              <div class="project-card-visual-placeholder" aria-label="MarsMTFormer-Lite project illustration">🔴</div>
+              <div class="project-card-visual-placeholder" aria-label="MarsMTFormer-Lite project illustration">
+                <svg width="48" height="48"><use href="#icon-telescope"/></svg>
+              </div>
             </div>
             <div class="project-card-body">
               <span class="project-card-index font-mono">04</span>
@@ -355,12 +490,15 @@
               </div>
             </div>
             <div class="project-card-footer">
-              <span>AI · Computer Vision · Research</span>
-              <span class="project-card-link">Open →</span>
+              <span>AI &middot; Computer Vision &middot; Research</span>
+              <span class="project-card-link">
+                Open
+                <svg width="12" height="12" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
+              </span>
             </div>
           </article>
 
-          <!-- OpsPulse AI Skills (Atlas Systems) -->
+          <!-- OpsPulse AI Skills -->
           <article class="project-card reveal"
             role="button" tabindex="0"
             aria-label="View OpsPulse AI Skills project details"
@@ -369,9 +507,11 @@
             data-problem="Enterprise ops teams were losing hours to manual prompting and inconsistent LLM workflows with no standardized lifecycle."
             data-approach="Designed 18 reusable AI development skills and an autonomous orchestrator using Antigravity for OpsPulse, standardizing the lifecycle from requirement analysis to release management."
             data-stack="Antigravity, .NET 10, Azure Functions, TypeScript, AI Orchestration"
-            data-status="Production — Atlas Systems">
+            data-status="Production &mdash; Atlas Systems">
             <div class="project-card-visual">
-              <div class="project-card-visual-placeholder" aria-label="OpsPulse project illustration">⚙️</div>
+              <div class="project-card-visual-placeholder" aria-label="OpsPulse project illustration">
+                <svg width="48" height="48"><use href="#icon-workflow"/></svg>
+              </div>
             </div>
             <div class="project-card-body">
               <span class="project-card-index font-mono">05</span>
@@ -385,23 +525,28 @@
               </div>
             </div>
             <div class="project-card-footer">
-              <span>Enterprise · AI</span>
-              <span class="project-card-link">Open →</span>
+              <span>Enterprise &middot; AI</span>
+              <span class="project-card-link">
+                Open
+                <svg width="12" height="12" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
+              </span>
             </div>
           </article>
 
-          <!-- Backdoor NLP (Research Project) -->
+          <!-- Backdoor NLP Research -->
           <article class="project-card reveal reveal-delay-1"
             role="button" tabindex="0"
             aria-label="View backdoor NLP research project details"
             data-tags="ai"
             data-cursor="View"
-            data-problem="Neural text classifiers are vulnerable to backdoor poisoning attacks — adversaries can embed hidden triggers that cause misclassification while evading standard defenses."
+            data-problem="Neural text classifiers are vulnerable to backdoor poisoning attacks &mdash; adversaries can embed hidden triggers that cause misclassification while evading standard defenses."
             data-approach="Co-authored a systematic study of confidence-driven backdoor poisoning against BERT and DistilBERT across 4 datasets, measuring sample efficiency, defense evasion, and survival under knowledge distillation."
             data-stack="Python, PyTorch, BERT, DistilBERT, NLP, Adversarial ML"
-            data-status="Submitted to IEEE T-IFS — Under Review">
+            data-status="Submitted to IEEE T-IFS &mdash; Under Review">
             <div class="project-card-visual">
-              <div class="project-card-visual-placeholder" aria-label="NLP Backdoor Research illustration">🔐</div>
+              <div class="project-card-visual-placeholder" aria-label="NLP Backdoor Research illustration">
+                <svg width="48" height="48"><use href="#icon-shield"/></svg>
+              </div>
             </div>
             <div class="project-card-body">
               <span class="project-card-index font-mono">06</span>
@@ -415,8 +560,11 @@
               </div>
             </div>
             <div class="project-card-footer">
-              <span>Adversarial ML · Research</span>
-              <span class="project-card-link">Open →</span>
+              <span>Adversarial ML &middot; Research</span>
+              <span class="project-card-link">
+                Open
+                <svg width="12" height="12" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
+              </span>
             </div>
           </article>
 
@@ -433,7 +581,7 @@
           <p id="modal-status" class="font-mono" style="font-size:var(--text-xs);color:var(--clr-fg-muted);margin-top:var(--space-2)"></p>
         </div>
         <button class="modal-close" aria-label="Close project detail">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          <svg width="16" height="16" aria-hidden="true"><use href="#icon-close"/></svg>
         </button>
       </div>
       <div class="modal-body">
@@ -459,77 +607,98 @@
       </div>
     </div>
 
-    <!-- ── LAB ───────────────────────────────────────────── -->
-    <section id="lab" class="section" aria-label="Lab — interactive experiments">
+    <!-- LAB -->
+    <section id="lab" class="section" aria-label="Lab &mdash; interactive experiments">
       <div class="container">
         <p class="section-label">Lab</p>
         <h2 class="text-display text-4xl reveal" style="margin-bottom:var(--space-4)">The experiments.</h2>
         <p class="text-muted reveal reveal-delay-1" style="max-width:520px;margin-bottom:var(--space-12)">
-          Canvas simulations and creative coding experiments — click any to run it live.
+          Canvas simulations and creative coding experiments &mdash; click any to run it live.
         </p>
 
         <div class="lab-grid">
 
           <a href="ray_casting.html" class="lab-card" data-cursor="Play" aria-label="Ray Casting simulation">
-            <img src="images/ray_casting.png" alt="Ray casting simulation screenshot" class="lab-card-preview" loading="lazy" />
+            <img src="images/ray_casting.png" alt="Ray casting light simulation" class="lab-card-preview" loading="lazy" />
             <div class="lab-card-overlay">
               <h3 class="lab-card-title">Ray Casting</h3>
-              <p class="lab-card-desc">2D light simulation using p5.js</p>
-              <span class="lab-card-launch">↗ Launch</span>
+              <p class="lab-card-desc">2D light simulation with shadow rendering</p>
+              <span class="lab-card-launch">
+                <svg width="12" height="12" aria-hidden="true"><use href="#icon-play"/></svg>
+                Launch
+              </span>
             </div>
           </a>
 
           <a href="voronoi.html" class="lab-card" data-cursor="Play" aria-label="Weighted Voronoi simulation">
-            <img src="images/cat.png" alt="Weighted Voronoi splitting screenshot" class="lab-card-preview" loading="lazy" />
+            <img src="images/cat.png" alt="Weighted Voronoi stippling" class="lab-card-preview" loading="lazy" />
             <div class="lab-card-overlay">
               <h3 class="lab-card-title">Weighted Voronoi</h3>
-              <p class="lab-card-desc">Voronoi diagram splitting with p5.js</p>
-              <span class="lab-card-launch">↗ Launch</span>
+              <p class="lab-card-desc">Lloyd relaxation image stippling</p>
+              <span class="lab-card-launch">
+                <svg width="12" height="12" aria-hidden="true"><use href="#icon-play"/></svg>
+                Launch
+              </span>
             </div>
           </a>
 
           <a href="sand.html" class="lab-card" data-cursor="Play" aria-label="Sand simulation">
-            <img src="images/sand.png" alt="Sand falling simulation screenshot" class="lab-card-preview" loading="lazy" />
+            <img src="images/sand.png" alt="Falling sand particle simulation" class="lab-card-preview" loading="lazy" />
             <div class="lab-card-overlay">
               <h3 class="lab-card-title">Sand Simulation</h3>
-              <p class="lab-card-desc">Particle sand physics with p5.js</p>
-              <span class="lab-card-launch">↗ Launch</span>
+              <p class="lab-card-desc">Falling particle physics &mdash; draw with mouse</p>
+              <span class="lab-card-launch">
+                <svg width="12" height="12" aria-hidden="true"><use href="#icon-play"/></svg>
+                Launch
+              </span>
             </div>
           </a>
 
           <a href="space.html" class="lab-card" data-cursor="Play" aria-label="Space travel simulation">
-            <img src="images/spacee.png" alt="Space travel simulation screenshot" class="lab-card-preview" loading="lazy" />
+            <img src="images/spacee.png" alt="Warp speed starfield simulation" class="lab-card-preview" loading="lazy" />
             <div class="lab-card-overlay">
               <h3 class="lab-card-title">Space Travel</h3>
-              <p class="lab-card-desc">Warp-speed starfield with p5.js</p>
-              <span class="lab-card-launch">↗ Launch</span>
+              <p class="lab-card-desc">Warp-speed starfield in HSB colour space</p>
+              <span class="lab-card-launch">
+                <svg width="12" height="12" aria-hidden="true"><use href="#icon-play"/></svg>
+                Launch
+              </span>
             </div>
           </a>
 
           <a href="cell_auto.html" class="lab-card" data-cursor="Play" aria-label="Cellular Automata simulation">
-            <img src="images/cell_auto.png" alt="Cellular automata screenshot" class="lab-card-preview" loading="lazy" />
+            <img src="images/cell_auto.png" alt="Elementary cellular automaton pattern" class="lab-card-preview" loading="lazy" />
             <div class="lab-card-overlay">
               <h3 class="lab-card-title">Cellular Automata</h3>
-              <p class="lab-card-desc">Conway-style generation system</p>
-              <span class="lab-card-launch">↗ Launch</span>
+              <p class="lab-card-desc">1D elementary automata, all 256 rules</p>
+              <span class="lab-card-launch">
+                <svg width="12" height="12" aria-hidden="true"><use href="#icon-play"/></svg>
+                Launch
+              </span>
             </div>
           </a>
 
           <a href="matter.html" class="lab-card" data-cursor="Play" aria-label="Matter.js physics simulation">
-            <img src="images/matter.png" alt="Matter.js physics simulation screenshot" class="lab-card-preview" loading="lazy" />
+            <img src="images/matter.png" alt="Rigid-body physics simulation" class="lab-card-preview" loading="lazy" />
             <div class="lab-card-overlay">
               <h3 class="lab-card-title">Physics Engine</h3>
               <p class="lab-card-desc">Rigid-body simulation with Matter.js</p>
-              <span class="lab-card-launch">↗ Launch</span>
+              <span class="lab-card-launch">
+                <svg width="12" height="12" aria-hidden="true"><use href="#icon-play"/></svg>
+                Launch
+              </span>
             </div>
           </a>
 
           <a href="draw.html" class="lab-card" data-cursor="Draw" aria-label="ML-assisted drawing tool">
-            <img src="images/draw.png" alt="ML-assisted drawing screenshot" class="lab-card-preview" loading="lazy" />
+            <img src="images/draw.png" alt="ML-assisted drawing with SketchRNN" class="lab-card-preview" loading="lazy" />
             <div class="lab-card-overlay">
               <h3 class="lab-card-title">ML Draw</h3>
-              <p class="lab-card-desc">Machine learning–assisted drawing with ml5.js</p>
-              <span class="lab-card-launch">↗ Launch</span>
+              <p class="lab-card-desc">Machine learning&mdash;assisted drawing with ml5</p>
+              <span class="lab-card-launch">
+                <svg width="12" height="12" aria-hidden="true"><use href="#icon-play"/></svg>
+                Launch
+              </span>
             </div>
           </a>
 
@@ -537,7 +706,7 @@
       </div>
     </section>
 
-    <!-- ── RESEARCH ───────────────────────────────────────── -->
+    <!-- RESEARCH -->
     <section id="research" class="section" aria-label="Research and publications">
       <div class="container">
         <p class="section-label">Research</p>
@@ -549,7 +718,7 @@
             <span class="research-index" aria-hidden="true">01</span>
             <div>
               <h3 class="research-title">Confidence-Driven Backdoor Poisoning in Text Classification</h3>
-              <p class="research-meta">Co-authored · IEEE Transactions on Information Forensics and Security (T-IFS) · 2025</p>
+              <p class="research-meta">Co-authored &middot; IEEE Transactions on Information Forensics and Security (T-IFS) &middot; 2025</p>
               <p style="font-size:var(--text-sm);color:var(--clr-fg-muted);margin-top:var(--space-3);line-height:var(--leading-normal)">
                 A systematic study of confidence-driven backdoor attacks against BERT and DistilBERT text classifiers, measuring sample efficiency, defense evasion, and survival under knowledge distillation across SST-2, AG News, IMDB, and Yelp Polarity.
               </p>
@@ -561,7 +730,7 @@
             <span class="research-index" aria-hidden="true">02</span>
             <div>
               <h3 class="research-title">MarsMTFormer-Lite: An Efficient Unified Multi-Task Transformer for Martian Terrain Detection and Instance Segmentation</h3>
-              <p class="research-meta">In preparation · AI4Mars MSL Dataset · 2025–2026</p>
+              <p class="research-meta">In preparation &middot; AI4Mars MSL Dataset &middot; 2025&ndash;2026</p>
               <p style="font-size:var(--text-sm);color:var(--clr-fg-muted);margin-top:var(--space-3);line-height:var(--leading-normal)">
                 A transformer-based approach extending MarsMTFormer for unified semantic detection and instance segmentation of Martian terrain across 4 classes: Soil, Bedrock, Sand, and Big Rock.
               </p>
@@ -573,7 +742,7 @@
       </div>
     </section>
 
-    <!-- ── EXPERIENCE ─────────────────────────────────────── -->
+    <!-- EXPERIENCE -->
     <section id="experience" class="section" aria-label="Experience and education">
       <div class="container">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-16);align-items:start;">
@@ -587,9 +756,9 @@
 
               <div class="timeline-item reveal">
                 <div class="timeline-dot" aria-hidden="true"></div>
-                <p class="timeline-period">Oct 2026 — Present</p>
+                <p class="timeline-period">Oct 2026 &ndash; Present</p>
                 <h3 class="timeline-role">Full Stack Development Intern</h3>
-                <p class="timeline-org">Atlas Systems · Bengaluru</p>
+                <p class="timeline-org">Atlas Systems &middot; Bengaluru</p>
                 <ul class="timeline-bullets" aria-label="Responsibilities">
                   <li>Built auth and account-recovery on .NET 10 Azure Functions: session-based auth, RBAC, invitation-based registration, and expiring password reset tokens.</li>
                   <li>Designed 18 reusable AI development skills and an autonomous orchestrator for OpsPulse, cutting token usage 23% across 2 teams.</li>
@@ -599,9 +768,9 @@
 
               <div class="timeline-item reveal reveal-delay-1">
                 <div class="timeline-dot" aria-hidden="true"></div>
-                <p class="timeline-period">Aug 2025 — Dec 2025</p>
+                <p class="timeline-period">Aug 2025 &ndash; Dec 2025</p>
                 <h3 class="timeline-role">Software Engineer Intern</h3>
-                <p class="timeline-org">CREDFIT · Bengaluru</p>
+                <p class="timeline-org">CREDFIT &middot; Bengaluru</p>
                 <ul class="timeline-bullets" aria-label="Responsibilities">
                   <li>Engineered a real-time data pipeline with Tally's API, syncing 5,000+ records daily with retry handling and idempotent writes.</li>
                   <li>Automated business workflows via custom Frappe/ERPNext API endpoints, cutting manual entry by 60%.</li>
@@ -620,22 +789,22 @@
             <div class="timeline">
               <div class="timeline-item reveal">
                 <div class="timeline-dot" aria-hidden="true"></div>
-                <p class="timeline-period">2023 — 2027</p>
+                <p class="timeline-period">2023 &ndash; 2027</p>
                 <h3 class="timeline-role">B.E. in Computer Science</h3>
-                <p class="timeline-org">Dayananda Sagar College of Engineering · Bengaluru · CGPA 8.88/10</p>
+                <p class="timeline-org">Dayananda Sagar College of Engineering &middot; Bengaluru &middot; CGPA 8.88/10</p>
                 <p class="timeline-org" style="margin-top:var(--space-2);font-size:var(--text-xs)">DSA, OS, DBMS, Networks, OOP, ML, AI, Statistics, Combinatorics</p>
               </div>
               <div class="timeline-item reveal reveal-delay-1">
                 <div class="timeline-dot" aria-hidden="true"></div>
-                <p class="timeline-period">2022 — 2023</p>
-                <h3 class="timeline-role">Class XII — Valedictorian</h3>
-                <p class="timeline-org">Army Public School, Ballygunge · Kolkata · 97%</p>
+                <p class="timeline-period">2022 &ndash; 2023</p>
+                <h3 class="timeline-role">Class XII &mdash; Valedictorian</h3>
+                <p class="timeline-org">Army Public School, Ballygunge &middot; Kolkata &middot; 97%</p>
               </div>
               <div class="timeline-item reveal reveal-delay-2">
                 <div class="timeline-dot" aria-hidden="true"></div>
-                <p class="timeline-period">2020 — 2021</p>
-                <h3 class="timeline-role">Class X — Valedictorian</h3>
-                <p class="timeline-org">Army Public School, Tenga Valley · Arunachal Pradesh · 95%</p>
+                <p class="timeline-period">2020 &ndash; 2021</p>
+                <h3 class="timeline-role">Class X &mdash; Valedictorian</h3>
+                <p class="timeline-org">Army Public School, Tenga Valley &middot; Arunachal Pradesh &middot; 95%</p>
               </div>
             </div>
 
@@ -701,7 +870,7 @@
                   <span class="tag pink">Prabhat Samman Award 2023</span>
                   <span class="tag">IBM Data Analysis Cert. 2025</span>
                   <span class="tag">Google Cloud Foundations 2026</span>
-                  <span class="tag">HackerRank Python Gold (5★)</span>
+                  <span class="tag">HackerRank Python Gold (5 stars)</span>
                 </div>
               </div>
             </div>
@@ -711,12 +880,12 @@
       </div>
     </section>
 
-    <!-- ── CONTACT ─────────────────────────────────────────── -->
+    <!-- CONTACT -->
     <section id="contact" class="contact section" aria-label="Contact">
       <div class="container">
         <p class="section-label">Contact</p>
         <h2 class="contact-headline text-display reveal">
-          Let's build<br/>something<br/><em style="color:var(--clr-accent-1);font-style:italic">remarkable.</em>
+          Let's build<br/>something<br/><em>remarkable.</em>
         </h2>
         <p class="text-muted reveal reveal-delay-1" style="max-width:420px;margin:var(--space-6) auto 0">
           Open to internships, research collaborations, and interesting side projects.
@@ -730,22 +899,22 @@
 
         <div class="contact-socials reveal reveal-delay-3">
           <a href="https://github.com/Caravaleer" target="_blank" rel="noopener" class="social-link">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            <svg width="16" height="16" aria-hidden="true"><use href="#icon-github"/></svg>
             GitHub
           </a>
           <a href="https://linkedin.com/in/abhimanyudutta01" target="_blank" rel="noopener" class="social-link">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <svg width="16" height="16" aria-hidden="true"><use href="#icon-linkedin"/></svg>
             LinkedIn
           </a>
           <a href="My_CV.pdf" class="social-link" download>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <svg width="16" height="16" aria-hidden="true"><use href="#icon-download"/></svg>
             Download CV
           </a>
         </div>
 
         <!-- Contact form -->
         <form class="contact-form reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" aria-label="Contact form">
-          <!-- TODO: confirm — Replace YOUR_FORM_ID with actual Formspree form ID -->
+          <!-- TODO: Replace YOUR_FORM_ID with actual Formspree form ID -->
           <div class="form-group">
             <label for="cf-name">Name</label>
             <input type="text" id="cf-name" name="name" required placeholder="Your name" autocomplete="name" />
@@ -759,7 +928,8 @@
             <textarea id="cf-message" name="message" required placeholder="Tell me about the project, role, or idea..."></textarea>
           </div>
           <button type="submit" class="btn btn-primary magnetic" style="width:100%;justify-content:center">
-            Send Message →
+            Send Message
+            <svg width="14" height="14" aria-hidden="true"><use href="#icon-mail"/></svg>
           </button>
         </form>
       </div>
@@ -767,7 +937,7 @@
 
   </main>
 
-  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <!-- FOOTER -->
   <footer class="site-footer" aria-label="Site footer">
     <div class="container footer-inner">
       <div class="footer-logo">A<span>.</span>Dutta</div>
@@ -785,7 +955,6 @@
   </footer>
 
   <script>
-    // Set footer year dynamically
     document.getElementById('footer-year').textContent = new Date().getFullYear();
   </script>
 

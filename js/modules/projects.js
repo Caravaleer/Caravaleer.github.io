@@ -2,7 +2,7 @@
    PROJECTS — Filter by category, modal detail view
    ============================================================ */
 export function initProjects() {
-  // ── Filter buttons ──
+  // Filter buttons
   const filterBtns = document.querySelectorAll('.filter-btn');
   const cards      = document.querySelectorAll('.project-card');
 
@@ -31,7 +31,7 @@ export function initProjects() {
     });
   });
 
-  // ── Modal ──
+  // Modal
   const backdrop = document.getElementById('project-modal-backdrop');
   const modal    = document.getElementById('project-modal');
   if (!backdrop || !modal) return;
@@ -46,7 +46,6 @@ export function initProjects() {
   });
 
   function openModal(card) {
-    // Populate modal content
     const title    = card.querySelector('.project-card-title')?.textContent || '';
     const desc     = card.querySelector('.project-card-desc')?.textContent || '';
     const problem  = card.dataset.problem || '';
@@ -72,11 +71,13 @@ export function initProjects() {
 
     if (linksEl) {
       linksEl.innerHTML = '';
+      // SVG icon: external link
+      const iconExternal = `<svg width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
       if (github) {
-        linksEl.innerHTML += `<a href="${github}" target="_blank" rel="noopener" class="btn btn-outline">↗ GitHub</a>`;
+        linksEl.innerHTML += `<a href="${github}" target="_blank" rel="noopener" class="btn btn-outline">${iconExternal} GitHub</a>`;
       }
       if (live) {
-        linksEl.innerHTML += `<a href="${live}" target="_blank" rel="noopener" class="btn btn-primary">↗ Live Demo</a>`;
+        linksEl.innerHTML += `<a href="${live}" target="_blank" rel="noopener" class="btn btn-primary">${iconExternal} Live Demo</a>`;
       }
     }
 
@@ -113,4 +114,3 @@ export function initProjects() {
     }
   });
 }
-

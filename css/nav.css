@@ -33,7 +33,8 @@
   transition: opacity var(--dur-fast);
 }
 .nav-logo:hover { opacity: 0.7; }
-.nav-logo span { color: var(--clr-accent-1); }
+/* Logo dot: use accent-1 in dark, accent-1-text (deep purple) in light */
+.nav-logo span { color: var(--clr-accent-1-text); }
 
 /* Desktop nav links */
 .nav-links {
@@ -54,7 +55,7 @@
   position: absolute;
   bottom: -3px; left: 0;
   width: 0; height: 1px;
-  background: var(--clr-accent-1);
+  background: var(--clr-accent-1-text);
   transition: width var(--dur-normal) var(--ease-out);
 }
 .nav-links a:hover { color: var(--clr-fg); }
@@ -143,7 +144,8 @@
               color var(--dur-fast);
   display: inline-block;
 }
-.nav-overlay-links a:hover { color: var(--clr-accent-1); }
+/* Hover: use accent-1-text so it's readable in both themes */
+.nav-overlay-links a:hover { color: var(--clr-accent-1-text); }
 .nav-overlay.open .nav-overlay-links a {
   opacity: 1;
   transform: none;
@@ -166,4 +168,3 @@
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
 }
-

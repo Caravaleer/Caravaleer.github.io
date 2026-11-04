@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPageTransition();
 });
 
-/* ── Duplicate ticker track for seamless loop ─────────────── */
+/* Duplicate ticker track for seamless loop */
 function initTicker() {
   const track = document.querySelector('.ticker-track');
   if (!track) return;
@@ -26,14 +26,13 @@ function initTicker() {
   track.parentElement.appendChild(clone);
 }
 
-/* ── Page transition on internal links ───────────────────── */
+/* Page transition on internal links */
 function initPageTransition() {
   const overlay = document.getElementById('page-transition');
   if (!overlay) return;
 
   document.querySelectorAll('a[href]').forEach(link => {
     const href = link.getAttribute('href');
-    // Only internal .html links
     if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
     if (!href.endsWith('.html') && !href.endsWith('/')) return;
 
@@ -55,4 +54,3 @@ function initPageTransition() {
     overlay.style.transform = 'scaleY(0)';
   });
 }
-

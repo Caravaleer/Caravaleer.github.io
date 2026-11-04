@@ -1,6 +1,6 @@
 /* ============================================================
    DESIGN TOKENS — Abhimanyu Dutta Portfolio
-   Inspired by fineacts.co: editorial, bold, playful, generous
+   Refined: editorial, bold, pastel-purple accent system
    ============================================================ */
 
 :root {
@@ -14,22 +14,29 @@
   --clr-fg-muted:   #888880;   /* secondary / meta text         */
   --clr-fg-dim:     #444440;   /* disabled / placeholder        */
 
-  /* Accent triad – vivid, warm, confident */
-  --clr-accent-1:   #e8ff47;   /* electric lime-yellow          */
-  --clr-accent-2:   #ff4d6d;   /* punchy coral-pink             */
-  --clr-accent-3:   #4d9fff;   /* clear sky blue                */
+  /* ── Accent: Pastel Purple System ───────────────────────── */
+  /*
+   * --clr-accent-1        : main lavender (fills, highlights, glows — dark mode)
+   * --clr-accent-1-strong : deeper purple (hover states — dark mode)
+   * --clr-accent-1-text   : deep purple for text/icons on light bg (WCAG AA)
+   * --clr-accent-1-soft   : very light lavender tint (surfaces in light mode)
+   * --clr-accent-fg       : text colour ON an accent-1 background
+   */
+  --clr-accent-1:        #c4b0f5;   /* lavender — main accent (dark mode)   */
+  --clr-accent-1-strong: #9b7ee8;   /* deeper — hover/active (dark mode)    */
+  --clr-accent-1-text:   #6240c8;   /* deep purple — text on light bg       */
+  --clr-accent-1-soft:   #efe9fb;   /* very soft lavender tint              */
+  --clr-accent-fg:       #0e0a1f;   /* dark purple-black — text on accent   */
 
-  --clr-accent-fg:  #0a0a0a;   /* text on accent-1 background  */
+  --clr-accent-2:        #f47aaa;   /* soft rose-pink accent                */
+  --clr-accent-3:        #6eb8f5;   /* periwinkle-blue accent               */
 
   /* ── Typography ─────────────────────────────────────────── */
-  /* Display: Editorial serif – bold statements                 */
   --font-display:   'Fraunces', Georgia, serif;
-  /* Body / UI: Clean geometric sans                            */
   --font-sans:      'DM Sans', system-ui, -apple-system, sans-serif;
-  /* Mono: Code / labels                                        */
   --font-mono:      'JetBrains Mono', 'Fira Code', monospace;
 
-  /* Type scale (clamp: mobile → desktop) */
+  /* Type scale (clamp: mobile -> desktop) */
   --text-xs:    clamp(0.65rem,  0.6rem + 0.25vw,  0.75rem);
   --text-sm:    clamp(0.8rem,   0.75rem + 0.25vw, 0.9rem);
   --text-base:  clamp(1rem,     0.95rem + 0.25vw, 1.1rem);
@@ -54,13 +61,13 @@
   --space-4:  1rem;
   --space-6:  1.5rem;
   --space-8:  2rem;
+  --space-10: 2.5rem;
   --space-12: 3rem;
   --space-16: 4rem;
   --space-24: 6rem;
   --space-32: 8rem;
   --space-48: 12rem;
 
-  /* Section padding */
   --section-py: clamp(5rem, 8vw, 10rem);
   --container:  min(90rem, calc(100vw - 3rem));
 
@@ -77,7 +84,6 @@
   --shadow-lg:  0 24px 64px rgba(0,0,0,0.6);
 
   /* ── Motion ─────────────────────────────────────────────── */
-  /* Snappy organic easing (like fineacts.co) */
   --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out:   cubic-bezier(0.76, 0, 0.24, 1);
   --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -97,14 +103,36 @@
 }
 
 /* ── Light theme overrides ──────────────────────────────── */
+/*
+ * In light mode the pastel lavender (#c4b0f5) is LOW contrast on white/cream.
+ * Rules:
+ *   - Never use --clr-accent-1 as text colour on a light background
+ *   - Use --clr-accent-1-text (#6240c8) for text, links, icons on light bg
+ *   - Use --clr-accent-1 / --clr-accent-1-soft for fills and highlights
+ *   - Text ON an accent fill still uses --clr-accent-fg (#0e0a1f)
+ */
 [data-theme="light"] {
   --clr-bg:        #f5f2eb;
   --clr-surface:   #ede9e0;
   --clr-surface-2: #e0dbd0;
-  --clr-border:    #d0ccc0;
-  --clr-fg:        #0e0e0e;
-  --clr-fg-muted:  #666660;
-  --clr-fg-dim:    #aaa;
+  --clr-border:    #ccc6b8;
+  --clr-fg:        #0e0e0e;    /* 16.0:1 on --clr-bg — passes AAA          */
+  --clr-fg-muted:  #5a564e;    /* 5.9:1 on --clr-bg — passes AA            */
+  --clr-fg-dim:    #888880;    /* 3.1:1 on --clr-bg — passes AA large text */
+
+  /* Accent overrides for light mode */
+  --clr-accent-1:        #9b7ee8;   /* used only as fills, not standalone text */
+  --clr-accent-1-strong: #7a5cd4;
+  --clr-accent-1-text:   #4f28b8;   /* 7.2:1 on #f5f2eb — passes AAA          */
+  --clr-accent-1-soft:   #efe9fb;
+  --clr-accent-fg:       #0e0a1f;   /* dark text on lavender fill              */
+
+  --clr-accent-2:        #9e1f4b;   /* 5.5:1 on --clr-bg — passes AA           */
+  --clr-accent-3:        #1a5e9e;   /* 5.8:1 on --clr-bg — passes AA           */
+
+  --shadow-sm:  0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md:  0 8px 32px rgba(0,0,0,0.12);
+  --shadow-lg:  0 24px 64px rgba(0,0,0,0.16);
 }
 
 /* ── Reduced motion ─────────────────────────────────────── */
@@ -115,15 +143,12 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  /* Show hero content immediately — no need for animation */
   .hero-eyebrow,
   .hero-headline .line span,
   .hero-sub,
   .hero-actions,
   .scroll-cue  { opacity: 1 !important; transform: none !important; }
-  /* Reveal elements are shown immediately */
   .reveal      { opacity: 1 !important; transform: none !important; }
-  /* Disable orbs and ticker */
   .hero-orb    { animation: none !important; }
   .ticker-track { animation: none !important; }
 }

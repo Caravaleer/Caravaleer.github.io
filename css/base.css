@@ -36,16 +36,20 @@ ul, ol { list-style: none; }
 input, textarea { font: inherit; }
 
 /* ── Selection ───────────────────────────────────────────── */
-::selection { background: var(--clr-accent-1); color: var(--clr-accent-fg); }
+/* Lavender fill with dark text — works in both themes        */
+::selection {
+  background: var(--clr-accent-1);
+  color: var(--clr-accent-fg);
+}
 
 /* ── Scrollbar ───────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--clr-border); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: var(--clr-accent-1); border-radius: 2px; }
 
 /* ── Focus ───────────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid var(--clr-accent-1);
+  outline: 2px solid var(--clr-accent-1-text);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
@@ -56,12 +60,14 @@ input, textarea { font: inherit; }
   margin-inline: auto;
 }
 .section { padding-block: var(--section-py); }
+
+/* Section label: uses accent text color — readable both themes */
 .section-label {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--clr-accent-1);
+  color: var(--clr-accent-1-text);
   margin-bottom: var(--space-6);
 }
 
@@ -77,7 +83,8 @@ input, textarea { font: inherit; }
 .text-3xl  { font-size: var(--text-3xl); }
 .text-2xl  { font-size: var(--text-2xl); }
 .text-muted { color: var(--clr-fg-muted); }
-.text-accent { color: var(--clr-accent-1); }
+/* text-accent: uses accent text token — passes contrast in both themes */
+.text-accent { color: var(--clr-accent-1-text); }
 .font-mono { font-family: var(--font-mono); }
 
 /* ── Buttons ─────────────────────────────────────────────── */
@@ -105,6 +112,7 @@ input, textarea { font: inherit; }
 .btn:hover::after { opacity: 0.08; background: white; }
 .btn:active { transform: scale(0.97); }
 
+/* Primary: lavender fill, dark text — passes AA both themes */
 .btn-primary {
   background: var(--clr-accent-1);
   color: var(--clr-accent-fg);
@@ -113,6 +121,11 @@ input, textarea { font: inherit; }
 .btn-primary:hover {
   box-shadow: 0 8px 32px color-mix(in srgb, var(--clr-accent-1) 40%, transparent);
   transform: translateY(-2px);
+}
+/* On light backgrounds, make sure the fill is deep enough for contrast */
+[data-theme="light"] .btn-primary {
+  background: var(--clr-accent-1-strong);
+  color: #ffffff;
 }
 .btn-outline {
   border: 1.5px solid var(--clr-border);
@@ -145,9 +158,24 @@ input, textarea { font: inherit; }
   color: var(--clr-fg-muted);
   border: 1px solid var(--clr-border);
 }
-.tag.accent { background: color-mix(in srgb, var(--clr-accent-1) 15%, transparent); color: var(--clr-accent-1); border-color: color-mix(in srgb, var(--clr-accent-1) 30%, transparent); }
-.tag.pink   { background: color-mix(in srgb, var(--clr-accent-2) 15%, transparent); color: var(--clr-accent-2); border-color: color-mix(in srgb, var(--clr-accent-2) 30%, transparent); }
-.tag.blue   { background: color-mix(in srgb, var(--clr-accent-3) 15%, transparent); color: var(--clr-accent-3); border-color: color-mix(in srgb, var(--clr-accent-3) 30%, transparent); }
+/* Accent tag: soft lavender fill, dark text for contrast */
+.tag.accent {
+  background: color-mix(in srgb, var(--clr-accent-1) 20%, transparent);
+  color: var(--clr-accent-1-text);
+  border-color: color-mix(in srgb, var(--clr-accent-1) 35%, transparent);
+}
+/* Pink tag */
+.tag.pink {
+  background: color-mix(in srgb, var(--clr-accent-2) 15%, transparent);
+  color: var(--clr-accent-2);
+  border-color: color-mix(in srgb, var(--clr-accent-2) 30%, transparent);
+}
+/* Blue tag */
+.tag.blue {
+  background: color-mix(in srgb, var(--clr-accent-3) 15%, transparent);
+  color: var(--clr-accent-3);
+  border-color: color-mix(in srgb, var(--clr-accent-3) 30%, transparent);
+}
 
 /* ── Reveal animations (JS adds .revealed) ───────────────── */
 .reveal {
@@ -214,6 +242,7 @@ body::before {
   white-space: nowrap;
   opacity: 0;
   transition: opacity var(--dur-fast);
+  /* mix-blend-mode: difference inverts this — always readable */
   color: var(--clr-bg);
 }
 #cursor.has-label {
@@ -251,8 +280,8 @@ body::before {
   position: absolute;
   top: -100%;
   left: var(--space-4);
-  background: var(--clr-accent-1);
-  color: var(--clr-accent-fg);
+  background: var(--clr-accent-1-text);
+  color: #ffffff;
   padding: var(--space-2) var(--space-4);
   border-radius: 0 0 var(--radius-md) var(--radius-md);
   font-weight: 600;
@@ -260,4 +289,3 @@ body::before {
   transition: top var(--dur-fast);
 }
 .skip-link:focus { top: 0; }
-
