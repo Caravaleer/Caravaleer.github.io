@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://caravaleer.github.io/sitemap.xml

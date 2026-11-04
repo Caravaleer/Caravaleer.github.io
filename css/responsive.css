@@ -1,0 +1,102 @@
+/* ============================================================
+   RESPONSIVE — Mobile + Tablet overrides
+   ============================================================ */
+
+/* Experience 2-col grid → 1-col on tablet and below */
+@media (max-width: 1024px) {
+  #experience .container > div[style*="grid"] {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-16) !important;
+  }
+}
+
+/* Stats grid on small screens */
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Projects rail single-column on mobile */
+@media (max-width: 600px) {
+  .projects-rail {
+    grid-template-columns: 1fr;
+  }
+  .lab-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Hero text sizing */
+@media (max-width: 480px) {
+  .hero-sub { font-size: var(--text-base); }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+}
+
+/* Contact socials stack */
+@media (max-width: 480px) {
+  .contact-socials { flex-direction: column; align-items: center; }
+  .contact-email { font-size: var(--text-2xl); }
+}
+
+/* Lab topbar */
+@media (max-width: 480px) {
+  .lab-topbar { padding: 0.75rem 1rem; }
+  .lab-title { display: none; }
+}
+
+/* Footer responsive */
+@media (max-width: 768px) {
+  .footer-inner {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+  }
+  .footer-links {
+    justify-content: center !important;
+  }
+}
+
+/* Research cards on mobile */
+@media (max-width: 600px) {
+  .research-card {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-4) !important;
+  }
+  .research-index { font-size: var(--text-xl) !important; }
+  .research-status { align-self: start !important; }
+}
+
+/* Manifesto on mobile */
+@media (max-width: 600px) {
+  .manifesto-item {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-4) !important;
+  }
+  .manifesto-visual { width: 60px !important; height: 60px !important; font-size: 1.5rem !important; }
+  .manifesto-text { font-size: var(--text-2xl) !important; }
+}
+
+/* Nav actions - hide CV button text on small screens */
+@media (max-width: 400px) {
+  .nav-actions .btn-primary { 
+    padding: 0.6em 1em;
+    font-size: var(--text-xs);
+  }
+}
+
+/* Modal full-screen on mobile */
+@media (max-width: 600px) {
+  .project-modal {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    top: 0 !important; left: 0 !important;
+    transform: none !important;
+    border-radius: 0 !important;
+    border-left: none !important; border-right: none !important;
+  }
+  .project-modal.open {
+    transform: none !important;
+  }
+}

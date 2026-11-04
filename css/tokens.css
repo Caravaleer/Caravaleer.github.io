@@ -1,0 +1,129 @@
+/* ============================================================
+   DESIGN TOKENS — Abhimanyu Dutta Portfolio
+   Inspired by fineacts.co: editorial, bold, playful, generous
+   ============================================================ */
+
+:root {
+  /* ── Palette ─────────────────────────────────────────────── */
+  --clr-bg:         #0a0a0a;   /* near-black canvas             */
+  --clr-surface:    #111111;   /* card / panel background       */
+  --clr-surface-2:  #1a1a1a;   /* elevated surface              */
+  --clr-border:     #2a2a2a;   /* subtle separator              */
+
+  --clr-fg:         #f0ede6;   /* primary text – warm white     */
+  --clr-fg-muted:   #888880;   /* secondary / meta text         */
+  --clr-fg-dim:     #444440;   /* disabled / placeholder        */
+
+  /* Accent triad – vivid, warm, confident */
+  --clr-accent-1:   #e8ff47;   /* electric lime-yellow          */
+  --clr-accent-2:   #ff4d6d;   /* punchy coral-pink             */
+  --clr-accent-3:   #4d9fff;   /* clear sky blue                */
+
+  --clr-accent-fg:  #0a0a0a;   /* text on accent-1 background  */
+
+  /* ── Typography ─────────────────────────────────────────── */
+  /* Display: Editorial serif – bold statements                 */
+  --font-display:   'Fraunces', Georgia, serif;
+  /* Body / UI: Clean geometric sans                            */
+  --font-sans:      'DM Sans', system-ui, -apple-system, sans-serif;
+  /* Mono: Code / labels                                        */
+  --font-mono:      'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Type scale (clamp: mobile → desktop) */
+  --text-xs:    clamp(0.65rem,  0.6rem + 0.25vw,  0.75rem);
+  --text-sm:    clamp(0.8rem,   0.75rem + 0.25vw, 0.9rem);
+  --text-base:  clamp(1rem,     0.95rem + 0.25vw, 1.1rem);
+  --text-lg:    clamp(1.1rem,   1rem + 0.5vw,     1.3rem);
+  --text-xl:    clamp(1.25rem,  1.1rem + 0.75vw,  1.6rem);
+  --text-2xl:   clamp(1.5rem,   1.2rem + 1.5vw,   2.2rem);
+  --text-3xl:   clamp(2rem,     1.5rem + 2.5vw,   3.5rem);
+  --text-4xl:   clamp(2.75rem,  2rem + 4vw,       6rem);
+  --text-hero:  clamp(3.5rem,   2.5rem + 6vw,     9.5rem);
+
+  --leading-tight:  1.05;
+  --leading-snug:   1.2;
+  --leading-normal: 1.6;
+  --tracking-tight: -0.03em;
+  --tracking-wide:  0.08em;
+  --tracking-wider: 0.15em;
+
+  /* ── Spacing ────────────────────────────────────────────── */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --space-48: 12rem;
+
+  /* Section padding */
+  --section-py: clamp(5rem, 8vw, 10rem);
+  --container:  min(90rem, calc(100vw - 3rem));
+
+  /* ── Radius ─────────────────────────────────────────────── */
+  --radius-sm:   4px;
+  --radius-md:   10px;
+  --radius-lg:   20px;
+  --radius-xl:   32px;
+  --radius-pill: 9999px;
+
+  /* ── Shadows ────────────────────────────────────────────── */
+  --shadow-sm:  0 2px 8px rgba(0,0,0,0.4);
+  --shadow-md:  0 8px 32px rgba(0,0,0,0.5);
+  --shadow-lg:  0 24px 64px rgba(0,0,0,0.6);
+
+  /* ── Motion ─────────────────────────────────────────────── */
+  /* Snappy organic easing (like fineacts.co) */
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:   cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-circ:     cubic-bezier(0, 0.55, 0.45, 1);
+
+  --dur-fast:   150ms;
+  --dur-normal: 350ms;
+  --dur-slow:   600ms;
+  --dur-slower: 900ms;
+
+  /* ── Z-index layers ─────────────────────────────────────── */
+  --z-base:    1;
+  --z-raised:  10;
+  --z-overlay: 100;
+  --z-modal:   200;
+  --z-cursor:  9999;
+}
+
+/* ── Light theme overrides ──────────────────────────────── */
+[data-theme="light"] {
+  --clr-bg:        #f5f2eb;
+  --clr-surface:   #ede9e0;
+  --clr-surface-2: #e0dbd0;
+  --clr-border:    #d0ccc0;
+  --clr-fg:        #0e0e0e;
+  --clr-fg-muted:  #666660;
+  --clr-fg-dim:    #aaa;
+}
+
+/* ── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Show hero content immediately — no need for animation */
+  .hero-eyebrow,
+  .hero-headline .line span,
+  .hero-sub,
+  .hero-actions,
+  .scroll-cue  { opacity: 1 !important; transform: none !important; }
+  /* Reveal elements are shown immediately */
+  .reveal      { opacity: 1 !important; transform: none !important; }
+  /* Disable orbs and ticker */
+  .hero-orb    { animation: none !important; }
+  .ticker-track { animation: none !important; }
+}

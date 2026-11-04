@@ -1,0 +1,262 @@
+/* ============================================================
+   GLOBAL BASE — Abhimanyu Dutta Portfolio
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..900;1,9..40,100..900&family=JetBrains+Mono:wght@400;500&display=swap');
+@import './tokens.css';
+
+/* ── Reset ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--clr-fg);
+  background: var(--clr-bg);
+  overflow-x: hidden;
+  cursor: none; /* custom cursor takes over */
+}
+
+/* Touch / reduced-motion: show default cursor */
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  body { cursor: auto; }
+  #cursor, #cursor-dot { display: none; }
+}
+
+img, video, canvas { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; }
+ul, ol { list-style: none; }
+input, textarea { font: inherit; }
+
+/* ── Selection ───────────────────────────────────────────── */
+::selection { background: var(--clr-accent-1); color: var(--clr-accent-fg); }
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--clr-border); border-radius: 2px; }
+
+/* ── Focus ───────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--clr-accent-1);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Layout helpers ──────────────────────────────────────── */
+.container {
+  width: var(--container);
+  margin-inline: auto;
+}
+.section { padding-block: var(--section-py); }
+.section-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--clr-accent-1);
+  margin-bottom: var(--space-6);
+}
+
+/* ── Typography utilities ────────────────────────────────── */
+.text-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+.text-hero { font-size: var(--text-hero); }
+.text-4xl  { font-size: var(--text-4xl); }
+.text-3xl  { font-size: var(--text-3xl); }
+.text-2xl  { font-size: var(--text-2xl); }
+.text-muted { color: var(--clr-fg-muted); }
+.text-accent { color: var(--clr-accent-1); }
+.font-mono { font-family: var(--font-mono); }
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.9em 2em;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: transform var(--dur-normal) var(--ease-spring),
+              box-shadow var(--dur-normal) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--dur-fast);
+}
+.btn:hover::after { opacity: 0.08; background: white; }
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: var(--clr-accent-1);
+  color: var(--clr-accent-fg);
+  box-shadow: 0 0 0 0 var(--clr-accent-1);
+}
+.btn-primary:hover {
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--clr-accent-1) 40%, transparent);
+  transform: translateY(-2px);
+}
+.btn-outline {
+  border: 1.5px solid var(--clr-border);
+  color: var(--clr-fg);
+}
+.btn-outline:hover { border-color: var(--clr-fg); transform: translateY(-2px); }
+.btn-ghost { color: var(--clr-fg-muted); }
+.btn-ghost:hover { color: var(--clr-fg); }
+
+/* Magnetic button wrapper */
+.magnetic { display: inline-block; }
+
+/* ── Line separator ──────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: var(--clr-border);
+  margin-block: var(--space-8);
+}
+
+/* ── Tag / badge ─────────────────────────────────────────── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3em 0.9em;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  background: var(--clr-surface-2);
+  color: var(--clr-fg-muted);
+  border: 1px solid var(--clr-border);
+}
+.tag.accent { background: color-mix(in srgb, var(--clr-accent-1) 15%, transparent); color: var(--clr-accent-1); border-color: color-mix(in srgb, var(--clr-accent-1) 30%, transparent); }
+.tag.pink   { background: color-mix(in srgb, var(--clr-accent-2) 15%, transparent); color: var(--clr-accent-2); border-color: color-mix(in srgb, var(--clr-accent-2) 30%, transparent); }
+.tag.blue   { background: color-mix(in srgb, var(--clr-accent-3) 15%, transparent); color: var(--clr-accent-3); border-color: color-mix(in srgb, var(--clr-accent-3) 30%, transparent); }
+
+/* ── Reveal animations (JS adds .revealed) ───────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+}
+.reveal.revealed { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── Noise overlay ───────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+/* ── Custom Cursor ───────────────────────────────────────── */
+#cursor {
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid var(--clr-fg);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  transform: translate(-50%, -50%);
+  transition: width var(--dur-normal) var(--ease-out),
+              height var(--dur-normal) var(--ease-out),
+              border-color var(--dur-normal) var(--ease-out),
+              background var(--dur-normal) var(--ease-out),
+              opacity var(--dur-fast);
+  mix-blend-mode: difference;
+}
+#cursor-dot {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background: var(--clr-fg);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  transform: translate(-50%, -50%);
+  transition: transform var(--dur-fast);
+  mix-blend-mode: difference;
+}
+#cursor-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity var(--dur-fast);
+  color: var(--clr-bg);
+}
+#cursor.has-label {
+  width: 80px;
+  height: 80px;
+  background: var(--clr-fg);
+  border-color: transparent;
+}
+#cursor.has-label #cursor-label { opacity: 1; }
+
+/* ── Page transition overlay ─────────────────────────────── */
+#page-transition {
+  position: fixed;
+  inset: 0;
+  background: var(--clr-accent-1);
+  z-index: calc(var(--z-cursor) - 1);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  pointer-events: none;
+}
+
+/* ── Scroll progress bar ─────────────────────────────────── */
+#scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--clr-accent-1);
+  z-index: var(--z-overlay);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+/* ── Skip link ───────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  background: var(--clr-accent-1);
+  color: var(--clr-accent-fg);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  font-weight: 600;
+  z-index: calc(var(--z-cursor) + 1);
+  transition: top var(--dur-fast);
+}
+.skip-link:focus { top: 0; }
