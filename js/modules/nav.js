@@ -1,85 +1,84 @@
--/-*- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-- - - -N-A-V- -—- -M-o-b-i-l-e- -o-v-e-r-l-a-y-,- -t-h-e-m-e- -t-o-g-g-l-e-,- -m-a-g-n-e-t-i-c- -b-u-t-t-o-n-s-
-- - - -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -*-/-
--e-x-p-o-r-t- -f-u-n-c-t-i-o-n- -i-n-i-t-N-a-v-(-)- -{-
-- - -c-o-n-s-t- -h-a-m-b-u-r-g-e-r- -=- -d-o-c-u-m-e-n-t-.-q-u-e-r-y-S-e-l-e-c-t-o-r-(-'-.-n-a-v---h-a-m-b-u-r-g-e-r-'-)-;-
-- - -c-o-n-s-t- -o-v-e-r-l-a-y- - - -=- -d-o-c-u-m-e-n-t-.-q-u-e-r-y-S-e-l-e-c-t-o-r-(-'-.-n-a-v---o-v-e-r-l-a-y-'-)-;-
-- - -c-o-n-s-t- -o-v-e-r-l-a-y-L-i-n-k-s- -=- -d-o-c-u-m-e-n-t-.-q-u-e-r-y-S-e-l-e-c-t-o-r-A-l-l-(-'-.-n-a-v---o-v-e-r-l-a-y---l-i-n-k-s- -a-'-)-;-
-- - -c-o-n-s-t- -b-o-d-y- - - - - - -=- -d-o-c-u-m-e-n-t-.-b-o-d-y-;-
--
-- - -i-f- -(-h-a-m-b-u-r-g-e-r- -&-&- -o-v-e-r-l-a-y-)- -{-
-- - - - -h-a-m-b-u-r-g-e-r-.-a-d-d-E-v-e-n-t-L-i-s-t-e-n-e-r-(-'-c-l-i-c-k-'-,- -(-)- -=->- -{-
-- - - - - - -c-o-n-s-t- -i-s-O-p-e-n- -=- -o-v-e-r-l-a-y-.-c-l-a-s-s-L-i-s-t-.-t-o-g-g-l-e-(-'-o-p-e-n-'-)-;-
-- - - - - - -h-a-m-b-u-r-g-e-r-.-c-l-a-s-s-L-i-s-t-.-t-o-g-g-l-e-(-'-o-p-e-n-'-,- -i-s-O-p-e-n-)-;-
-- - - - - - -h-a-m-b-u-r-g-e-r-.-s-e-t-A-t-t-r-i-b-u-t-e-(-'-a-r-i-a---e-x-p-a-n-d-e-d-'-,- -i-s-O-p-e-n-)-;-
-- - - - - - -b-o-d-y-.-s-t-y-l-e-.-o-v-e-r-f-l-o-w- -=- -i-s-O-p-e-n- -?- -'-h-i-d-d-e-n-'- -:- -'-'-;-
-- - - - -}-)-;-
--
-- - - - -o-v-e-r-l-a-y-L-i-n-k-s-.-f-o-r-E-a-c-h-(-l-i-n-k- -=->- -{-
-- - - - - - -l-i-n-k-.-a-d-d-E-v-e-n-t-L-i-s-t-e-n-e-r-(-'-c-l-i-c-k-'-,- -(-)- -=->- -{-
-- - - - - - - - -o-v-e-r-l-a-y-.-c-l-a-s-s-L-i-s-t-.-r-e-m-o-v-e-(-'-o-p-e-n-'-)-;-
-- - - - - - - - -h-a-m-b-u-r-g-e-r-.-c-l-a-s-s-L-i-s-t-.-r-e-m-o-v-e-(-'-o-p-e-n-'-)-;-
-- - - - - - - - -h-a-m-b-u-r-g-e-r-.-s-e-t-A-t-t-r-i-b-u-t-e-(-'-a-r-i-a---e-x-p-a-n-d-e-d-'-,- -'-f-a-l-s-e-'-)-;-
-- - - - - - - - -b-o-d-y-.-s-t-y-l-e-.-o-v-e-r-f-l-o-w- -=- -'-'-;-
-- - - - - - -}-)-;-
-- - - - -}-)-;-
--
-- - - - -/-/- -C-l-o-s-e- -o-n- -E-s-c-a-p-e-
-- - - - -d-o-c-u-m-e-n-t-.-a-d-d-E-v-e-n-t-L-i-s-t-e-n-e-r-(-'-k-e-y-d-o-w-n-'-,- -(-e-)- -=->- -{-
-- - - - - - -i-f- -(-e-.-k-e-y- -=-=-=- -'-E-s-c-a-p-e-'- -&-&- -o-v-e-r-l-a-y-.-c-l-a-s-s-L-i-s-t-.-c-o-n-t-a-i-n-s-(-'-o-p-e-n-'-)-)- -{-
-- - - - - - - - -o-v-e-r-l-a-y-.-c-l-a-s-s-L-i-s-t-.-r-e-m-o-v-e-(-'-o-p-e-n-'-)-;-
-- - - - - - - - -h-a-m-b-u-r-g-e-r-.-c-l-a-s-s-L-i-s-t-.-r-e-m-o-v-e-(-'-o-p-e-n-'-)-;-
-- - - - - - - - -h-a-m-b-u-r-g-e-r-.-s-e-t-A-t-t-r-i-b-u-t-e-(-'-a-r-i-a---e-x-p-a-n-d-e-d-'-,- -'-f-a-l-s-e-'-)-;-
-- - - - - - - - -b-o-d-y-.-s-t-y-l-e-.-o-v-e-r-f-l-o-w- -=- -'-'-;-
-- - - - - - - - -h-a-m-b-u-r-g-e-r-.-f-o-c-u-s-(-)-;-
-- - - - - - -}-
-- - - - -}-)-;-
-- - -}-
--}-
--
--/-*- -T-h-e-m-e- -t-o-g-g-l-e- -*-/-
--e-x-p-o-r-t- -f-u-n-c-t-i-o-n- -i-n-i-t-T-h-e-m-e-(-)- -{-
-- - -c-o-n-s-t- -t-o-g-g-l-e- -=- -d-o-c-u-m-e-n-t-.-q-u-e-r-y-S-e-l-e-c-t-o-r-(-'-.-t-h-e-m-e---t-o-g-g-l-e-'-)-;-
-- - -c-o-n-s-t- -h-t-m-l- - - -=- -d-o-c-u-m-e-n-t-.-d-o-c-u-m-e-n-t-E-l-e-m-e-n-t-;-
--
-- - -/-/- -D-e-t-e-c-t- -s-y-s-t-e-m- -p-r-e-f-e-r-e-n-c-e-
-- - -c-o-n-s-t- -p-r-e-f-e-r-s-D-a-r-k- -=- -w-i-n-d-o-w-.-m-a-t-c-h-M-e-d-i-a-(-'-(-p-r-e-f-e-r-s---c-o-l-o-r---s-c-h-e-m-e-:- -d-a-r-k-)-'-)-.-m-a-t-c-h-e-s-;-
-- - -c-o-n-s-t- -s-a-v-e-d- -=- -l-o-c-a-l-S-t-o-r-a-g-e-.-g-e-t-I-t-e-m-(-'-t-h-e-m-e-'-)-;-
-- - -c-o-n-s-t- -i-n-i-t-i-a-l- -=- -s-a-v-e-d- -|-|- -(-p-r-e-f-e-r-s-D-a-r-k- -?- -'-d-a-r-k-'- -:- -'-l-i-g-h-t-'-)-;-
--
-- - -a-p-p-l-y-T-h-e-m-e-(-i-n-i-t-i-a-l-)-;-
--
-- - -i-f- -(-t-o-g-g-l-e-)- -{-
-- - - - -t-o-g-g-l-e-.-a-d-d-E-v-e-n-t-L-i-s-t-e-n-e-r-(-'-c-l-i-c-k-'-,- -(-)- -=->- -{-
-- - - - - - -c-o-n-s-t- -c-u-r-r-e-n-t- -=- -h-t-m-l-.-d-a-t-a-s-e-t-.-t-h-e-m-e-;-
-- - - - - - -c-o-n-s-t- -n-e-x-t- - - - -=- -c-u-r-r-e-n-t- -=-=-=- -'-d-a-r-k-'- -?- -'-l-i-g-h-t-'- -:- -'-d-a-r-k-'-;-
-- - - - - - -a-p-p-l-y-T-h-e-m-e-(-n-e-x-t-)-;-
-- - - - - - -l-o-c-a-l-S-t-o-r-a-g-e-.-s-e-t-I-t-e-m-(-'-t-h-e-m-e-'-,- -n-e-x-t-)-;-
-- - - - -}-)-;-
-- - -}-
--
-- - -f-u-n-c-t-i-o-n- -a-p-p-l-y-T-h-e-m-e-(-t-h-e-m-e-)- -{-
-- - - - -h-t-m-l-.-d-a-t-a-s-e-t-.-t-h-e-m-e- -=- -t-h-e-m-e-;-
-- - -}-
--}-
--
--/-*- -M-a-g-n-e-t-i-c- -b-u-t-t-o-n- -e-f-f-e-c-t- -*-/-
--e-x-p-o-r-t- -f-u-n-c-t-i-o-n- -i-n-i-t-M-a-g-n-e-t-i-c-(-)- -{-
-- - -i-f- -(-w-i-n-d-o-w-.-m-a-t-c-h-M-e-d-i-a-(-'-(-h-o-v-e-r-:- -n-o-n-e-)-'-)-.-m-a-t-c-h-e-s-)- -r-e-t-u-r-n-;-
--
-- - -d-o-c-u-m-e-n-t-.-q-u-e-r-y-S-e-l-e-c-t-o-r-A-l-l-(-'-.-m-a-g-n-e-t-i-c-'-)-.-f-o-r-E-a-c-h-(-e-l- -=->- -{-
-- - - - -e-l-.-a-d-d-E-v-e-n-t-L-i-s-t-e-n-e-r-(-'-m-o-u-s-e-m-o-v-e-'-,- -(-e-)- -=->- -{-
-- - - - - - -c-o-n-s-t- -r-e-c-t- - -=- -e-l-.-g-e-t-B-o-u-n-d-i-n-g-C-l-i-e-n-t-R-e-c-t-(-)-;-
-- - - - - - -c-o-n-s-t- -c-x- - - - -=- -r-e-c-t-.-l-e-f-t- -+- -r-e-c-t-.-w-i-d-t-h- - -/- -2-;-
-- - - - - - -c-o-n-s-t- -c-y- - - - -=- -r-e-c-t-.-t-o-p- - -+- -r-e-c-t-.-h-e-i-g-h-t- -/- -2-;-
-- - - - - - -c-o-n-s-t- -d-x- - - - -=- -(-e-.-c-l-i-e-n-t-X- --- -c-x-)- -*- -0-.-3-;-
-- - - - - - -c-o-n-s-t- -d-y- - - - -=- -(-e-.-c-l-i-e-n-t-Y- --- -c-y-)- -*- -0-.-3-;-
-- - - - - - -e-l-.-s-t-y-l-e-.-t-r-a-n-s-f-o-r-m- -=- -`-t-r-a-n-s-l-a-t-e-(-$-{-d-x-}-p-x-,- -$-{-d-y-}-p-x-)-`-;-
-- - - - -}-)-;-
-- - - - -e-l-.-a-d-d-E-v-e-n-t-L-i-s-t-e-n-e-r-(-'-m-o-u-s-e-l-e-a-v-e-'-,- -(-)- -=->- -{-
-- - - - - - -e-l-.-s-t-y-l-e-.-t-r-a-n-s-f-o-r-m- -=- -'-'-;-
-- - - - -}-)-;-
-- - -}-)-;-
--}-
--
--
+/* ============================================================
+   NAV — Mobile overlay, theme toggle, magnetic buttons
+   ============================================================ */
+export function initNav() {
+  const hamburger = document.querySelector('.nav-hamburger');
+  const overlay   = document.querySelector('.nav-overlay');
+  const overlayLinks = document.querySelectorAll('.nav-overlay-links a');
+  const body      = document.body;
+
+  if (hamburger && overlay) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = overlay.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    overlayLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        overlay.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        body.style.overflow = '';
+      });
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) {
+        overlay.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        body.style.overflow = '';
+        hamburger.focus();
+      }
+    });
+  }
+}
+
+/* Theme toggle */
+export function initTheme() {
+  const toggle = document.querySelector('.theme-toggle');
+  const html   = document.documentElement;
+
+  // Detect system preference
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const saved = localStorage.getItem('theme');
+  const initial = saved || (prefersDark ? 'dark' : 'light');
+
+  applyTheme(initial);
+
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      const current = html.dataset.theme;
+      const next    = current === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      localStorage.setItem('theme', next);
+    });
+  }
+
+  function applyTheme(theme) {
+    html.dataset.theme = theme;
+  }
+}
+
+/* Magnetic button effect */
+export function initMagnetic() {
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  document.querySelectorAll('.magnetic').forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+      const rect  = el.getBoundingClientRect();
+      const cx    = rect.left + rect.width  / 2;
+      const cy    = rect.top  + rect.height / 2;
+      const dx    = (e.clientX - cx) * 0.3;
+      const dy    = (e.clientY - cy) * 0.3;
+      el.style.transform = `translate(${dx}px, ${dy}px)`;
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = '';
+    });
+  });
+}
+
