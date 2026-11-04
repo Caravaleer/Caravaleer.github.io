@@ -55,3 +55,4 @@ function initPageTransition() {
     overlay.style.transform = 'scaleY(0)';
   });
 }
+
