@@ -1,27 +1,37 @@
 /**
  * lab-utils.js — Shared utilities for all Lab experiments
  *
- * Exposed as window.LabUtils for compatibility with both vanilla JS and
- * p5.js (plain script) experiments.
+ * Exposed as window.LabUtils (and window.Lab alias) for compatibility
+ * with both vanilla JS and p5.js (plain script) experiments.
  *
- * API notes:
- *  - createCanvas(containerOrP5, containerIfP5) — works for both vanilla and p5
- *  - createPanel(containerOrOpts, titleOrUndefined) — flexible first arg
- *  - createHelp(containerOrShortcuts, shortcutsIfContainer) — flexible
- *  - createFullscreenBtn(container) — optional container
- *  - bindKeys(p5OrMap, mapIfP5) — works with p5 or plain document
- *  - syncTheme(callbackOrP5) — fires callback on theme change
- *  - initVisibilityPause(p5OrHide, show) — p5 or callback style
+ * Designed to be highly defensive and backward-compatible with both:
+ *  - Single options object calls: addSlider({ label, min, max, value, step, onChange })
+ *  - Positional argument calls: addSlider(label, min, max, value, step, onChange)
+ *  - Flexible select option formats: ['a','b'] or [['val','text']] or [{value, label}] or { val: text }
  */
 
 (function (global) {
   'use strict';
 
+  // ── Safe execution wrapper ────────────────────────────────────
+  function safe(fn, label) {
+    try {
+      return fn();
+    } catch (err) {
+      console.warn('[Lab.safe caught error in ' + (label || 'anonymous') + ']:', err);
+      return null;
+    }
+  }
+
   // ── Theme helpers ────────────────────────────────────────────
   function getCSSVar(name, fallback) {
     if (fallback === undefined) fallback = '';
-    return getComputedStyle(document.documentElement)
-      .getPropertyValue(name).trim() || fallback;
+    try {
+      return getComputedStyle(document.documentElement)
+        .getPropertyValue(name).trim() || fallback;
+    } catch (e) {
+      return fallback;
+    }
   }
 
   function getThemeColors() {
@@ -41,17 +51,9 @@
   }
 
   // ── Canvas setup ─────────────────────────────────────────────
-  /**
-   * createCanvas(container)             — vanilla JS (returns {canvas,ctx,getSize,resize})
-   * createCanvas(p5Instance, container) — p5.js (calls p.createCanvas, returns p5 element)
-   *
-   * For p5 experiments: p5's own canvas is created inside the container element.
-   * Returns the p5 canvas element (p.elt) so you can pass it to exportPNG etc.
-   */
   var MAX_DPR = 2;
 
   function createCanvas(first, second) {
-    // Detect p5 instance mode: first arg has createCanvas method
     if (first && typeof first.createCanvas === 'function') {
       return _createP5Canvas(first, second);
     }
@@ -59,22 +61,23 @@
   }
 
   function _createP5Canvas(p, container) {
+    if (!container) container = document.getElementById('sketch-container') || document.body;
     var w = container.clientWidth  || window.innerWidth;
     var h = container.clientHeight || (window.innerHeight - 48);
     var cnv = p.createCanvas(w, h);
-    // Move p5's canvas into the container element
-    container.appendChild(cnv.elt);
-    cnv.elt.style.cssText = 'display:block;width:100%;height:100%;touch-action:none;';
+    if (cnv && cnv.elt && container) {
+      container.appendChild(cnv.elt);
+      cnv.elt.style.cssText = 'display:block;width:100%;height:100%;touch-action:none;';
+    }
 
-    // Handle resize via p.windowResized (caller should implement that)
-    // but we also wire a window resize fallback
     var resizeTimer;
     window.addEventListener('resize', function () {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function () {
+        if (!container) return;
         var nw = container.clientWidth  || window.innerWidth;
         var nh = container.clientHeight || (window.innerHeight - 48);
-        p.resizeCanvas(nw, nh);
+        try { p.resizeCanvas(nw, nh); } catch (e) {}
       }, 100);
     });
 
@@ -82,6 +85,7 @@
   }
 
   function _createVanillaCanvas(container) {
+    if (!container) container = document.getElementById('sketch-container') || document.body;
     var canvas = document.createElement('canvas');
     canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;touch-action:none;';
     container.appendChild(canvas);
@@ -91,12 +95,12 @@
 
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
-      w = container.clientWidth;
-      h = container.clientHeight;
+      w = container.clientWidth  || window.innerWidth;
+      h = container.clientHeight || window.innerHeight;
       canvas.width  = Math.round(w * dpr);
       canvas.height = Math.round(h * dpr);
       var ctx = canvas.getContext('2d');
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       return { w: w, h: h, dpr: dpr };
     }
 
@@ -121,36 +125,55 @@
     };
   }
 
-  // ── Fullscreen ────────────────────────────────────────────────
+  // ── Fullscreen Icons ──────────────────────────────────────────
   var FS_ICON_ENTER = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>';
   var FS_ICON_EXIT  = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="10" y1="14" x2="3" y2="21"/><line x1="21" y1="3" x2="14" y2="10"/></svg>';
 
-  function initFullscreen(btn, target) {
-    // Allow passing just a container element as target (use documentElement as fallback)
-    if (!btn) return;
-    target = target || document.documentElement;
-    if (!document.fullscreenEnabled) { btn.style.display = 'none'; return; }
+  function initFullscreen(btnOrTarget, optionalTarget) {
+    var btn = null;
+    var target = document.documentElement;
 
-    btn.innerHTML = FS_ICON_ENTER;
-    btn.addEventListener('click', function () {
+    if (btnOrTarget && btnOrTarget.tagName === 'BUTTON') {
+      btn = btnOrTarget;
+      target = optionalTarget || document.documentElement;
+    } else if (btnOrTarget && btnOrTarget.nodeType) {
+      target = btnOrTarget;
+    }
+
+    if (!document.fullscreenEnabled) {
+      if (btn) btn.style.display = 'none';
+      return;
+    }
+
+    if (btn) {
+      btn.innerHTML = FS_ICON_ENTER;
+      btn.addEventListener('click', function () {
+        if (!document.fullscreenElement) {
+          (target.requestFullscreen ? target : document.documentElement).requestFullscreen().catch(function () {});
+        } else {
+          document.exitFullscreen().catch(function () {});
+        }
+      });
+      document.addEventListener('fullscreenchange', function () {
+        var isFS = !!document.fullscreenElement;
+        btn.setAttribute('aria-label', isFS ? 'Exit fullscreen' : 'Enter fullscreen');
+        btn.title = isFS ? 'Exit fullscreen (F)' : 'Enter fullscreen (F)';
+        btn.innerHTML = isFS ? FS_ICON_EXIT : FS_ICON_ENTER;
+      });
+    } else {
+      // Direct call toggle
       if (!document.fullscreenElement) {
-        target.requestFullscreen().catch(function () {});
+        (target.requestFullscreen ? target : document.documentElement).requestFullscreen().catch(function () {});
       } else {
         document.exitFullscreen().catch(function () {});
       }
-    });
-
-    document.addEventListener('fullscreenchange', function () {
-      var isFS = !!document.fullscreenElement;
-      btn.setAttribute('aria-label', isFS ? 'Exit fullscreen' : 'Enter fullscreen');
-      btn.title = isFS ? 'Exit fullscreen (F)' : 'Enter fullscreen (F)';
-      btn.innerHTML = isFS ? FS_ICON_EXIT : FS_ICON_ENTER;
-    });
+    }
   }
 
   // ── Pointer input ─────────────────────────────────────────────
   function initPointer(el) {
     var ptr = { x: 0, y: 0, down: false, id: null };
+    if (!el) return ptr;
 
     function update(e) {
       var r = el.getBoundingClientRect();
@@ -159,7 +182,7 @@
     }
 
     el.addEventListener('pointerdown', function (e) {
-      el.setPointerCapture(e.pointerId);
+      try { el.setPointerCapture(e.pointerId); } catch (err) {}
       ptr.down = true;
       ptr.id = e.pointerId;
       update(e);
@@ -180,43 +203,44 @@
   }
 
   // ── Visibility pausing ────────────────────────────────────────
-  /**
-   * initVisibilityPause(onHide, onShow) — callback style
-   * initVisibilityPause(p5Instance)     — p5 style: calls p.noLoop()/p.loop()
-   */
   function initVisibilityPause(onHideOrP5, onShow) {
     if (onHideOrP5 && typeof onHideOrP5.noLoop === 'function') {
-      // p5 instance
       var p = onHideOrP5;
       document.addEventListener('visibilitychange', function () {
-        if (document.hidden) p.noLoop();
-        else                 p.loop();
+        try {
+          if (document.hidden) p.noLoop();
+          else                 p.loop();
+        } catch (e) {}
       });
     } else {
       document.addEventListener('visibilitychange', function () {
-        if (document.hidden) onHideOrP5();
-        else if (onShow)     onShow();
+        try {
+          if (document.hidden && typeof onHideOrP5 === 'function') onHideOrP5();
+          else if (!document.hidden && typeof onShow === 'function') onShow();
+        } catch (e) {}
       });
     }
   }
 
   // ── PNG export ────────────────────────────────────────────────
-  /**
-   * exportPNG(canvas, filename) — vanilla canvas or p5 canvas element
-   */
   function exportPNG(canvasOrElt, filename) {
     filename = filename || 'lab-export.png';
-    // support p5 element (has .elt) or raw canvas
     var el = (canvasOrElt && canvasOrElt.elt) ? canvasOrElt.elt : canvasOrElt;
     if (!el || typeof el.toDataURL !== 'function') {
-      // fallback: grab first canvas in sketch-container
-      el = document.querySelector('#sketch-container canvas');
+      el = document.querySelector('#sketch-container canvas') || document.querySelector('canvas');
     }
-    if (!el) return;
-    var link = document.createElement('a');
-    link.download = (filename.endsWith('.png') ? filename : filename + '.png');
-    link.href = el.toDataURL('image/png');
-    link.click();
+    if (!el || typeof el.toDataURL !== 'function') {
+      console.warn('[LabUtils.exportPNG]: No valid canvas found.');
+      return;
+    }
+    try {
+      var link = document.createElement('a');
+      link.download = (filename.endsWith('.png') ? filename : filename + '.png');
+      link.href = el.toDataURL('image/png');
+      link.click();
+    } catch (err) {
+      console.warn('[LabUtils.exportPNG] Failed:', err);
+    }
   }
 
   // ── Delta time ────────────────────────────────────────────────
@@ -235,9 +259,44 @@
 
   // ── UI Panel builder ──────────────────────────────────────────
   /**
-   * createPanel(opts)              — opts = { title }
-   * createPanel({ title: ... })   — same
-   * createPanel(container, title) — legacy signature used by some experiments
+   * Helper: Normalize select options into an array of [value, text] pairs.
+   * Accepts:
+   *  - [['val', 'Text'], ...]
+   *  - ['val1', 'val2', ...]
+   *  - [{ value: 'val1', label: 'Text1' }, ...]
+   *  - { 'val1': 'Text1', 'val2': 'Text2' }
+   */
+  function normalizeOptions(raw) {
+    var pairs = [];
+    if (!raw) return pairs;
+
+    if (Array.isArray(raw)) {
+      raw.forEach(function (item) {
+        if (Array.isArray(item)) {
+          pairs.push([String(item[0]), String(item[1] !== undefined ? item[1] : item[0])]);
+        } else if (item && typeof item === 'object') {
+          var val = item.value !== undefined ? item.value : (item.id !== undefined ? item.id : item.key);
+          var lbl = item.label !== undefined ? item.label : (item.text !== undefined ? item.text : val);
+          pairs.push([String(val), String(lbl)]);
+        } else {
+          // Primitive string / number
+          pairs.push([String(item), String(item)]);
+        }
+      });
+    } else if (typeof raw === 'object') {
+      Object.keys(raw).forEach(function (k) {
+        pairs.push([String(k), String(raw[k])]);
+      });
+    }
+    return pairs;
+  }
+
+  /**
+   * Creates the collapsible control panel.
+   * Supports:
+   *   createPanel('Controls')
+   *   createPanel({ title: 'Controls' })
+   *   createPanel(container, 'Controls')
    */
   function createPanel(firstArg, secondArg) {
     var title = 'Controls';
@@ -246,16 +305,13 @@
       title = firstArg;
     } else if (firstArg && typeof firstArg === 'object') {
       if (firstArg.title) {
-        // opts object: { title }
         title = firstArg.title;
       } else if (firstArg.nodeType) {
-        // DOM element passed as first arg, title is second
         title = secondArg || 'Controls';
       }
     }
     if (typeof secondArg === 'string') title = secondArg;
 
-    // Hamburger toggle button (top-right area)
     var toggleBtn = document.createElement('button');
     toggleBtn.className = 'lab-panel-toggle';
     toggleBtn.setAttribute('aria-label', 'Toggle controls');
@@ -278,27 +334,55 @@
       toggleBtn.setAttribute('aria-expanded', String(open));
     });
 
-    function addSlider(opts) {
-      var format = opts.format || function (v) { return v; };
+    /**
+     * addSlider:
+     * Accepts:
+     *   addSlider({ label, min, max, value, step, onChange, format })
+     *   addSlider(label, min, max, value, step, onChange, format)
+     */
+    function addSlider() {
+      var opts = {};
+      if (arguments.length === 1 && typeof arguments[0] === 'object') {
+        opts = arguments[0];
+      } else {
+        opts = {
+          label:    arguments[0],
+          min:      arguments[1],
+          max:      arguments[2],
+          value:    arguments[3],
+          step:     arguments[4],
+          onChange: arguments[5],
+          format:   arguments[6]
+        };
+      }
+
+      var label = opts.label || '';
+      var min   = opts.min !== undefined ? opts.min : 0;
+      var max   = opts.max !== undefined ? opts.max : 100;
+      var val   = opts.value !== undefined ? opts.value : min;
+      var step  = opts.step !== undefined ? opts.step : 1;
+      var onChange = typeof opts.onChange === 'function' ? opts.onChange : function () {};
+      var format = typeof opts.format === 'function' ? opts.format : function (v) { return v; };
+
       var wrap = document.createElement('div');
       wrap.className = 'lab-control';
 
       var lbl = document.createElement('label');
       var valSpan = document.createElement('span');
-      valSpan.textContent = format(opts.value);
-      lbl.textContent = opts.label + '\u00a0';
+      valSpan.textContent = format(val);
+      lbl.textContent = label + '\u00a0';
       lbl.appendChild(valSpan);
 
       var input = document.createElement('input');
       input.type  = 'range';
-      input.min   = opts.min;
-      input.max   = opts.max;
-      input.step  = opts.step !== undefined ? opts.step : 1;
-      input.value = opts.value;
+      input.min   = min;
+      input.max   = max;
+      input.step  = step;
+      input.value = val;
       input.addEventListener('input', function () {
         var v = parseFloat(input.value);
         valSpan.textContent = format(v);
-        opts.onChange(v);
+        onChange(v);
       });
 
       wrap.appendChild(lbl);
@@ -307,53 +391,113 @@
       return { input: input, valSpan: valSpan };
     }
 
-    function addSelect(opts) {
+    /**
+     * addSelect:
+     * Accepts:
+     *   addSelect({ label, options, value, onChange })
+     *   addSelect(label, options, value, onChange)
+     */
+    function addSelect() {
+      var opts = {};
+      if (arguments.length === 1 && typeof arguments[0] === 'object' && !Array.isArray(arguments[0])) {
+        opts = arguments[0];
+      } else {
+        opts = {
+          label:    arguments[0],
+          options:  arguments[1],
+          value:    arguments[2],
+          onChange: arguments[3]
+        };
+      }
+
+      var label = opts.label || '';
+      var pairs = normalizeOptions(opts.options);
+      var currentVal = opts.value !== undefined ? String(opts.value) : (pairs.length > 0 ? pairs[0][0] : '');
+      var onChange = typeof opts.onChange === 'function' ? opts.onChange : function () {};
+
       var wrap = document.createElement('div');
       wrap.className = 'lab-control';
 
-      var lbl = document.createElement('label');
-      lbl.textContent = opts.label;
-      wrap.appendChild(lbl);
+      if (label) {
+        var lbl = document.createElement('label');
+        lbl.textContent = label;
+        wrap.appendChild(lbl);
+      }
 
       var sel = document.createElement('select');
-      opts.options.forEach(function (pair) {
+      pairs.forEach(function (pair) {
         var opt = document.createElement('option');
         opt.value = pair[0];
         opt.textContent = pair[1];
-        if (pair[0] === opts.value) opt.selected = true;
+        if (pair[0] === currentVal) opt.selected = true;
         sel.appendChild(opt);
       });
-      sel.addEventListener('change', function () { opts.onChange(sel.value); });
+      sel.addEventListener('change', function () {
+        onChange(sel.value);
+      });
+
       wrap.appendChild(sel);
       panel.appendChild(wrap);
       return sel;
     }
 
-    function addToggle(opts) {
+    /**
+     * addToggle:
+     * Accepts:
+     *   addToggle({ label, checked, onChange })
+     *   addToggle(label, checked, onChange)
+     */
+    function addToggle() {
+      var opts = {};
+      if (arguments.length === 1 && typeof arguments[0] === 'object') {
+        opts = arguments[0];
+      } else {
+        opts = {
+          label:    arguments[0],
+          checked:  arguments[1],
+          onChange: arguments[2]
+        };
+      }
+
+      var label = opts.label || '';
+      var checked = !!opts.checked;
+      var onChange = typeof opts.onChange === 'function' ? opts.onChange : function () {};
+
       var wrap = document.createElement('div');
       wrap.className = 'lab-control lab-control--toggle';
 
       var lbl = document.createElement('label');
       var chk = document.createElement('input');
       chk.type = 'checkbox';
-      chk.checked = !!opts.checked;
-      chk.addEventListener('change', function () { opts.onChange(chk.checked); });
+      chk.checked = checked;
+      chk.addEventListener('change', function () {
+        onChange(chk.checked);
+      });
+
       lbl.appendChild(chk);
-      lbl.appendChild(document.createTextNode('\u00a0' + opts.label));
+      lbl.appendChild(document.createTextNode('\u00a0' + label));
       wrap.appendChild(lbl);
       panel.appendChild(wrap);
       return chk;
     }
 
+    /**
+     * addButtons:
+     * Accepts: array of button specs [{ label, icon, onClick, id }]
+     */
     function addButtons(buttons) {
+      if (!Array.isArray(buttons)) return null;
       var row = document.createElement('div');
       row.className = 'lab-control-row';
       buttons.forEach(function (b) {
+        if (!b) return;
         var btn = document.createElement('button');
         btn.className = 'lab-btn';
         if (b.id) btn.id = b.id;
-        btn.innerHTML = b.icon ? b.icon + ' ' + b.label : b.label;
-        btn.addEventListener('click', b.onClick);
+        btn.innerHTML = b.icon ? b.icon + ' ' + (b.label || '') : (b.label || '');
+        if (typeof b.onClick === 'function') {
+          btn.addEventListener('click', b.onClick);
+        }
         row.appendChild(btn);
       });
       panel.appendChild(row);
@@ -363,7 +507,7 @@
     function addHint(text) {
       var hint = document.createElement('p');
       hint.className = 'lab-hint';
-      hint.textContent = text;
+      hint.textContent = text || '';
       panel.appendChild(hint);
       return hint;
     }
@@ -372,6 +516,7 @@
       var sep = document.createElement('hr');
       sep.style.cssText = 'border:none;border-top:1px solid var(--clr-border);margin:0.25rem 0';
       panel.appendChild(sep);
+      return sep;
     }
 
     return {
@@ -387,15 +532,13 @@
   }
 
   // ── Help popover ──────────────────────────────────────────────
-  /**
-   * createHelp(shortcuts)              — shortcuts: [[key, desc], ...]
-   * createHelp(container, shortcuts)   — legacy signature
-   */
   function createHelp(firstArg, secondArg) {
     var shortcuts = [];
     if (Array.isArray(firstArg)) {
       shortcuts = firstArg;
     } else if (firstArg && firstArg.nodeType && Array.isArray(secondArg)) {
+      shortcuts = secondArg;
+    } else if (Array.isArray(secondArg)) {
       shortcuts = secondArg;
     }
 
@@ -413,6 +556,7 @@
     pop.appendChild(titleEl);
 
     shortcuts.forEach(function (pair) {
+      if (!Array.isArray(pair) || pair.length < 2) return;
       var p = document.createElement('p');
       p.innerHTML = '<kbd style="background:var(--clr-surface-2);border:1px solid var(--clr-border);border-radius:3px;padding:0 4px;font-size:0.65rem">' + pair[0] + '</kbd>\u00a0' + pair[1];
       pop.appendChild(p);
@@ -431,9 +575,6 @@
   }
 
   // ── Fullscreen button ─────────────────────────────────────────
-  /**
-   * createFullscreenBtn(container) — optional container to target for fullscreen
-   */
   function createFullscreenBtn(container) {
     var target = container || document.documentElement;
 
@@ -469,26 +610,13 @@
   }
 
   // ── Keyboard binder ──────────────────────────────────────────
-  /**
-   * bindKeys(map)           — { 'Space': fn, 'KeyR': fn, ... } on document
-   * bindKeys(p5, map)       — attaches via p.keyPressed for p5 experiments
-   */
   function bindKeys(firstArg, secondArg) {
-    var map;
-    var p5 = null;
-
-    if (firstArg && typeof firstArg.keyPressed !== 'undefined' && secondArg) {
-      // p5 mode — but p.keyPressed is a function slot, not event
-      // We'll use document keydown for consistency (works in both)
-      map = secondArg;
-    } else {
-      map = firstArg;
-    }
+    var map = (firstArg && typeof firstArg === 'object' && !secondArg) ? firstArg : (secondArg || {});
 
     document.addEventListener('keydown', function (e) {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
       var fn = map[e.code] || map[e.key];
-      if (fn) {
+      if (typeof fn === 'function') {
         e.preventDefault();
         fn(e);
       }
@@ -496,32 +624,25 @@
   }
 
   // ── Theme sync ───────────────────────────────────────────────
-  /**
-   * syncTheme(callback) — calls callback() when theme changes
-   * syncTheme(p5)       — calls p.redraw() when theme changes
-   *
-   * Also syncs theme from localStorage on call.
-   */
   function syncTheme(callbackOrP5) {
-    // Sync initial theme
     var t = localStorage.getItem('theme') || 'dark';
     document.documentElement.dataset.theme = t;
 
-    // Watch for toggle events (dispatched by main site's theme toggle)
-    document.addEventListener('themechange', function () {
-      if (callbackOrP5 && typeof callbackOrP5 === 'function') {
-        callbackOrP5();
-      } else if (callbackOrP5 && typeof callbackOrP5.redraw === 'function') {
-        callbackOrP5.redraw();
+    function notify() {
+      try {
+        if (typeof callbackOrP5 === 'function') {
+          callbackOrP5();
+        } else if (callbackOrP5 && typeof callbackOrP5.redraw === 'function') {
+          callbackOrP5.redraw();
+        }
+      } catch (err) {
+        console.warn('[LabUtils.syncTheme notify error]:', err);
       }
-    });
+    }
 
-    // Also watch data-theme attribute mutation
-    var observer = new MutationObserver(function () {
-      if (callbackOrP5 && typeof callbackOrP5 === 'function') {
-        callbackOrP5();
-      }
-    });
+    document.addEventListener('themechange', notify);
+
+    var observer = new MutationObserver(notify);
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['data-theme']
@@ -529,7 +650,8 @@
   }
 
   // ── Expose globally ──────────────────────────────────────────
-  global.LabUtils = {
+  var LabUtils = {
+    safe:               safe,
     getCSSVar:          getCSSVar,
     getThemeColors:     getThemeColors,
     createCanvas:       createCanvas,
@@ -544,5 +666,8 @@
     bindKeys:           bindKeys,
     syncTheme:          syncTheme,
   };
+
+  global.LabUtils = LabUtils;
+  global.Lab      = LabUtils; // convenient alias
 
 }(window));
